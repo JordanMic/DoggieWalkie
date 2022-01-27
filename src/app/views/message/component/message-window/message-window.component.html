@@ -1,0 +1,59 @@
+<div class="no-threads" *ngIf="messageThread == null">
+  <h2>Nie masz żadnych aktywnych wątków wiadomości lub podany wątek nie istnieje</h2>
+</div>
+<div class="message-container" *ngIf="messageThread != null">
+  <div class="message-header">
+    <div class="participant">
+      <ng-container *ngTemplateOutlet="participantAvatar"></ng-container><h2>{{messageThread.participant.firstName}}</h2>
+    </div>
+    <div class="walk-data" *ngIf="messageThread.walk">
+      <p>Spacer z {{ getDogNames() }}</p>
+      <p><strong>{{ messageThread.walk.dateStart | date: 'shortDate' }}</strong> {{ messageThread.walk.dateStart | date: 'HH:mm' }}-{{ messageThread.walk.dateEnd | date: 'HH:mm' }}</p>
+    </div>
+    <div class="dogs" *ngIf="messageThread.walk">
+      <app-avatar *ngFor="let dog of messageThread.walk.dogs"
+                  [initialsSource]="[dog.dogName]"
+                  [imageFile]="dog.avatar || null"
+                  [salt]="dog.dogName"
+                  [size]="50"
+      ></app-avatar>
+      <div class="dog-names">
+        {{ getDogNames() }}
+      </div>
+    </div>
+  </div>
+  <div class="messages" #messagesWindow>
+    <app-message
+      *ngFor="let message of messageThread.messages"
+      [message]="message" [messageThread]="messageThread"
+      [participantAvatar]="participantAvatar"
+    ></app-message>
+  </div>
+  <div class="send-message-box">
+    <form class="message-form"  *ngIf="messageThread.closedAt == null">
+      <mat-form-field
+        class="input"
+        appearance="fill"
+        type="text"
+      >
+        <mat-label>Message</mat-label>
+        <textarea  [formControl]="messageBox" matInput></textarea>
+      </mat-form-field>
+      <div>
+        <button (click)="sendMessage()" [disabled]="!messageBox.value" type="submit" mat-flat-button color="primary" class="btn-walk"  >Wyślij <mat-icon>send</mat-icon></button>
+      </div>
+    </form>
+    <div *ngIf="messageThread.closedAt != null">
+      <h2>Wątek został zamknięty i już nie możesz w nim wysyłać wiadomości</h2>
+    </div>
+  </div>
+</div>
+
+<ng-template #participantAvatar>
+  <app-avatar
+    *ngIf="messageThread"
+    [initialsSource]="[messageThread.participant.firstName || messageThread.participant.username, messageThread.participant.lastName || messageThread.participant.username]"
+    [imageFile]="messageThread.participant.avatar"
+    [salt]="messageThread.participant.username"
+  ></app-avatar>
+</ng-template>

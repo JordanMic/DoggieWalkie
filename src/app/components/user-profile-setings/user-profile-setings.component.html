@@ -1,0 +1,68 @@
+
+<h2>Ustawienia mojego profilu</h2>
+<mat-dialog-content>
+  <mat-tab-group mat-align-tabs="start">
+    <mat-tab label="Profil">
+
+      <div class="container" *ngIf="userProfile">
+
+        <section class="photo">
+          <app-avatar [initialsSource]="[userProfile.firstName, userProfile.lastName]"
+                      [salt]="userProfile.username"
+                      [imageFile]="userProfile?.avatar || null"
+                      [size]="96"
+          ></app-avatar>
+          <div class="options">
+            <div class="load">
+              <p (click)="changePhoto()">Załaduj zdjęcie</p>
+              <p (click)="deletePhoto()">Usuń zdjęcie</p>
+            </div>
+            <p class="info">Zdjęcia pomagają użytkownikom w szybkim rozpoznaniu Cię w aplikacji</p>
+          </div>
+        </section>
+
+        <section class="inputs">
+          <mat-grid-list cols="2" rowHeight="5:1">
+            <mat-grid-tile>
+              <mat-form-field class="example-full-width">
+                <mat-label>Imię</mat-label>
+                <input matInput type="text" [(ngModel)]="userProfile.firstName" name="name" placeholder="Podaj swoje imię" required>
+              </mat-form-field>
+            </mat-grid-tile>
+            <mat-grid-tile>
+              <mat-form-field class="example-full-width">
+                <mat-label>Nazwisko</mat-label>
+                <input matInput type="text" [(ngModel)]="userProfile.lastName" name="lastname" placeholder="Podaj swoje imię" required>
+              </mat-form-field>
+            </mat-grid-tile>
+            <mat-grid-tile>
+              <mat-form-field class="example-full-width">
+                <mat-label>Nagłówek</mat-label>
+                <input matInput type="text" [(ngModel)]="userProfile.header" name="header" placeholder="Podaj swoje imię" required>
+              </mat-form-field>
+            </mat-grid-tile>
+            <mat-grid-tile>
+              <mat-form-field class="example-full-width">
+                <mat-label>Numer telefonu</mat-label>
+                <input matInput type="text" [(ngModel)]="userProfile.phoneNumber" name="phoneNumber" placeholder="Podaj swoje imię" required>
+              </mat-form-field>
+            </mat-grid-tile>
+          </mat-grid-list>
+        </section>
+
+        <section class="description">
+          <mat-form-field class="example-full-widthh">
+            <mat-label>Opowiedz coś o sobie</mat-label>
+            <textarea [(ngModel)]="userProfile.shortBio" matInput placeholder="Ex. It makes me feel..."></textarea>
+          </mat-form-field>
+        </section>
+
+      </div>
+
+    </mat-tab>
+    <mat-tab label="Konto">Content 2</mat-tab>
+  </mat-tab-group>
+</mat-dialog-content>
+<mat-dialog-actions>
+  <button mat-button mat-dialog-close class="btn" (click)="save()">Zapisz zmiany</button>
+</mat-dialog-actions>

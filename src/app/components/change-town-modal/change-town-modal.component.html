@@ -1,0 +1,28 @@
+<h3 class="header">Skąd jesteś?</h3>
+
+<div class="container">
+  <form class="form-signin" [formGroup]="form">
+    <mat-form-field class='full-width' required>
+      <mat-label>Województwo</mat-label>
+      <mat-select #vivodenshipEl name="voivodeship" formControlName="voivodeship" class="sel" (selectionChange)="getDistrict(vivodenshipEl.value)"required>
+        <mat-option *ngFor="let vivodeship of voivodeships" [value]="vivodeship.id">{{vivodeship.name}}</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field  class='full-width' required>
+      <mat-label>Powiat</mat-label>
+      <mat-select #districtEl name="district" formControlName="district" class="sel" (selectionChange)="getTown(vivodenshipEl.value, districtEl.value)" required>
+        <mat-option *ngFor="let district of districts" [value]="district.id">{{district.name}}</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field  class='full-width' required>
+      <mat-label>Miasto</mat-label>
+      <mat-select class="sel" name="town" formControlName="town" required>
+        <mat-option *ngFor="let town of towns" [value]="town.id">{{town.name}}</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <button class="btn" (click)="apply()" [disabled]="form.controls.town.invalid">Zastosuj</button>
+  </form>
+</div>

@@ -1,0 +1,28 @@
+<header>
+  <p class="title">Zmiana zdjęcia profilowego</p>
+  <p class="description">Wybierz coś odpowiedniego</p>
+</header>
+
+<mat-dialog-content>
+  <div class="d-flex d-flex justify-content-center">
+    <input type="file" class="btn" (change)="fileChangeEvent($event)" />
+  </div>
+
+  <image-cropper
+    [imageChangedEvent]="imageChangedEvent"
+    [maintainAspectRatio]="true"
+    [aspectRatio]="1 / 1"
+    format="png"
+    (imageCropped)="imageCropped($event)"
+    (imageLoaded)="imageLoaded()"
+    (cropperReady)="cropperReady()"
+    (loadImageFailed)="loadImageFailed()"
+    [resizeToWidth]="512"
+    [resizeToHeight]="512"
+  ></image-cropper>
+</mat-dialog-content>
+<div class="d-flex justify-content-center">
+  <mat-dialog-actions>
+    <button (click)="returnPhoto()" mat-button mat-dialog-close class="save-changes-active">Zapisz zmiany</button>
+  </mat-dialog-actions>
+</div>

@@ -1,0 +1,40 @@
+<div class="container-fluid vh-100 cont">
+  <div class="row d-flex justify-content-center h-100 align-items-center">
+    <div class="progress"></div>
+      <div class="col-sm-6 col-md-4 col-md-offset-4 contents">
+          <div class="account-wall">
+            <a class="navbar-brand" href="/">
+              <img src="assets/logo/logo.svg" style="width:170px;" alt="Logo">
+            </a>
+            <div class="container">
+              <h3>Napisz coś więcej o swoim pupilu</h3>
+
+              <form class="form-signin" [formGroup]="form">
+                <mat-form-field class="example-full-width">
+                  <mat-label>Data urodzenia</mat-label>
+                  <input matInput name="dateOfBirth" formControlName="dateOfBirth" [matDatepicker]="picker" required>
+                  <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                  <mat-datepicker #picker></mat-datepicker>
+                </mat-form-field>
+
+                  <mat-form-field  class='example-full-width'>
+                    <mat-label>Płeć</mat-label>
+                    <mat-select class="sel" id="gender"  formControlName="gender"  required>
+                      <mat-option *ngFor="let gender of eGender" [value]="gender[0]">{{gender[1]}}</mat-option>
+                    </mat-select>
+                  </mat-form-field>
+
+                <mat-form-field  class='example-full-width'>
+                  <mat-label>Kastracja / Sterylizacja</mat-label>
+                  <mat-select class="sel" name="castration" formControlName="castration" required>
+                    <mat-option *ngFor="let castration of eCastration" [value]="castration[0]">{{castration[1]}}</mat-option>
+                  </mat-select>
+                </mat-form-field>
+                </form>
+
+          </div>
+          </div>
+          <button class="btn btn-block" (click)="goToStepThree()" [disabled]='form.invalid'>Dalej</button>
+      </div>
+  </div>
+</div>

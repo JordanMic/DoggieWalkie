@@ -1,0 +1,28 @@
+
+
+    <div class="card" style="width: 26rem;">
+      <div class="card-img-top" [routerLink]="['/dog', dog.id]">
+        <div class="avatar">
+          <app-avatar *ngIf="dog.dogName"
+                      [initialsSource]="[dog.dogName]"
+                      [imageFile]="dog.avatar || null"
+                      [salt]="dog.dogName"
+                      [round]=false
+                      [size]="230"
+
+          ></app-avatar>
+        </div>
+      </div>
+        <button class="close" [ngClass]="dog.favourite ? 'red-font' : ''" (click)="markAsFavourite()">
+          <i class="fa fa-heart" aria-hidden="false" ></i>
+
+        </button>
+        <div class="card-body" [routerLink]="['/dog', dog.id]">
+          <p class="card-text profile-name text-center font-weight-bold">
+              {{dog.dogName}}
+          <p class="card-text profile-race text-center">
+            {{dog.breed}}
+          <p class="text-center"><span class="dot" [ngClass]="dog.status ? 'green' : 'red'"></span>{{dog.status ? 'Czeka na spacer' : 'Niedostępny'}}</p>
+        </div>
+        </div>
+

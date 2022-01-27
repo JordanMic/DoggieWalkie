@@ -1,0 +1,40 @@
+.message-thread {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 11px 16px;
+  display: flex;
+  flex-direction: row;
+  position: relative;
+
+  .userdata {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding-left: 14px;
+    size: 14px;
+
+    p {
+      margin-bottom: 0;
+    }
+
+    .name {
+      color: rgba(0, 0, 0, 0.87);
+      font-weight: bold;
+    }
+    .last-message {
+      font-weight: normal;
+      color: rgba(114, 114, 114, 0.5);
+    }
+  }
+
+  .unread {
+    position: absolute;
+    display: inline-block;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 40px;
+    border: 5px solid #6e14ef;
+    border-radius: 50%;
+  }
+}

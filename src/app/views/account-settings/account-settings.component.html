@@ -1,0 +1,72 @@
+<div class="content">
+    <h3 class="top-header">Ustawienia konta</h3>
+
+    <div class="container">
+      <form [formGroup]="myForm">
+      <section class="inputs">
+            <div class="form-row account-row">
+                <p class="section-title">Hasło</p>
+            </div>
+            <div class="form-row account-row">
+                <p class="subtext-3">Dobrze jest użyć silnego hasła, którego nie używasz gdzie indziej</p>
+            </div>
+            <div class="form-row account-row account-inputs">
+                <div class="form-group col-md-4">
+                    <input matInput type="password" class="form-control input-gray" formControlName="oldPassword" [(ngModel)]="accountSettings.oldPassword" placeholder="Obecne hasło"  [errorStateMatcher]="matcher">
+                    <mat-error *ngIf="myForm.hasError('required', 'oldPassword') && myForm.controls['oldPassword'].touched">
+                      Podaj swoje obecne hasło
+                    </mat-error>
+                </div>
+                <div class="form-group col-md-4">
+                    <input matInput type="password" class="form-control input-gray" placeholder="Nowe hasło" formControlName="password" required>
+                    <mat-error *ngIf="myForm.hasError('required', 'password') && myForm.controls['password'].touched">
+                      Podaj swoje nowe hasło
+                    </mat-error>
+                </div>
+                <div class="form-group col-md-4">
+                    <input matInput type="password" class="form-control input-gray" [(ngModel)]="accountSettings.newPassword" placeholder="Powtórz nowe hasło" formControlName="confirmPassword" [errorStateMatcher]="matcher">
+                    <mat-error *ngIf="myForm.hasError('notSame')">
+                      Hasła nie pasują
+                    </mat-error>
+                </div>
+            </div>
+            <div class="form-row account-row">
+            </div>
+            <div class="d-flex justify-content-between button-group">
+                <div></div>
+                <div>
+
+                    <button type="submit" class="save-changes-active" [disabled]='myForm.invalid' (click)="save()">Zapisz zmiany</button>
+                </div>
+            </div>
+
+        </section>
+        </form>
+    </div>
+
+
+</div>
+
+<div class="content mt-5">
+    <div class="container">
+        <form>
+            <div class="form-row account-row">
+                <p class="red-subtext-1">Usunięcie konta</p>
+            </div>
+            <div class="form-row account-row">
+                <p class="subtext-3">Usunięcie konta jest nieodwracalne - upewnij się, zanim przejdziesz do dalszego kroku</p>
+            </div>
+            <div class="form-row account-row">
+                <div class="d-flex justify-content-between button-group account-row">
+                    <div>
+                        <button type="submit" class="btn delete-account-button" (click)="delete()">Usuń konto</button>
+                    </div>
+                </div>
+            </div>
+
+
+        </form>
+    </div>
+
+
+</div>

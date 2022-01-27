@@ -1,0 +1,52 @@
+<div class="mt-5"></div>
+
+<div class="row bar d-flex">
+  <div class="my-auto col-xs-3 name">Lista moich propozycji</div>
+  <div class="scheduled-walks" (click)="goToProposalList()">Zaplanowane spacery</div>
+  <div class="history" (click)="goToHistory()">Historia</div>
+</div>
+
+<div class="propsales" *ngIf="proposals">
+  <div *ngIf="(proposals.proposalListModels?.length || 0) < 1" class="empty-info2">
+    <img src="assets/icons/feets-ico.svg" style="width:15%; margin: 5% auto;" alt="feets-ico">
+    <p class="show-if-empty2">Nie zaproponowałeś nikomu spaceru</p>
+    <p class="other-search">W tym miejscu zobaczysz listę złożonych przez Ciebie propozycji spaceru</p>
+  </div>
+
+
+  <div class="offer-container" *ngFor="let proposal of proposals.proposalListModels">
+    <mat-expansion-panel (opened)="openDropdown()" (closed)="openDropdown()">
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          {{proposal.dateStart| date:'dd.MM.yyyy'}}
+        </mat-panel-title>
+        <mat-panel-description>
+          <div class="walk-times">
+            {{proposal.dateStart| date:'HH:mm'}} -  {{proposal.dateEnd| date:'HH:mm'}}
+          </div>
+        </mat-panel-description>
+        <div class="accepted" *ngIf="proposal.status=='ACCEPTED'">{{proposal.status? 'Zaakceptowany' : ''}}</div>
+        <div class="status" *ngIf="proposal.status=='WAITING'">{{proposal.status? 'Oczekuje' : ''}}</div>
+        <div class="ended" *ngIf="proposal.status=='COMPLETED'">{{proposal.status? 'Spacer czeka na zakończenie' : ''}}</div>
+      </mat-expansion-panel-header>
+      <div class="offers-wrapper" >
+        <div class="row offers-dropdown d-flex h-100">
+          <div class="col-md-1">
+          </div>
+          <div class="col-md-1 avatar-wrapper">
+            <app-avatar style="cursor: pointer;"  *ngIf="proposal.dogName" [initialsSource]="[proposal.dogName[0].toUpperCase()]"
+                        [imageFile]="proposal.dogAvatar || null" [salt]="proposal.dogName" [round]=true [size]="40"></app-avatar>
+          </div>
+          <div class="col-md-8 my-auto">
+            <p class="align-middle name-wrapper" style="cursor: pointer;">{{proposal.dogName}}</p>
+          </div>
+          <div class="col-md-2 my-auto offer-actions">
+            <i class="fa fa-comments-o" aria-hidden="true" matTooltip="Napisz do użytkownika"></i>
+            <i class="fa fa-times-circle" *ngIf="proposal.status=='WAITING' || proposal.status=='ACCEPTED'" (click)="reject(proposal.proposalId)" aria-hidden="true" matTooltip="Odrzuć propozycję"></i>
+            <i class="fa fa-check-circle" *ngIf="proposal.status=='COMPLETED'" aria-hidden="true" (click)="confirm(proposal.dogName, proposal.requestId, proposal.proposalId)" matTooltip="Potwierdź zakończenie i oceń wyprowadzanego psa"></i>
+          </div>
+        </div>
+      </div>
+    </mat-expansion-panel>
+  </div>
+</div>

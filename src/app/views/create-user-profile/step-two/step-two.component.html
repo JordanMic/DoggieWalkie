@@ -1,0 +1,42 @@
+<div class="container-fluid vh-100 cont">
+  <div class="row d-flex justify-content-center h-100 align-items-center">
+    <div class="progress"></div>
+    <div class="col-sm-6 col-md-4 col-md-offset-4 contents">
+          <a class="navbar-brand" href="/">
+            <img src="assets/logo/logo.svg" style="width:170px;" alt="Logo">
+          </a>
+          <div class="account-wall">
+              <h3>Skąd jesteś?</h3>
+
+              <div class="container">
+                <form class="form-signin" [formGroup]="form">
+                <mat-form-field class='example-full-width' required>
+                  <mat-label>Województwo</mat-label>
+                  <mat-select #vivodenshipEl name="voivodeship" formControlName="voivodeship" class="sel" (selectionChange)="getDistrict(vivodenshipEl.value)"required>
+                    <mat-option *ngFor="let vivodeship of voivodeships" [value]="vivodeship.id">{{vivodeship.name}}</mat-option>
+                  </mat-select>
+                </mat-form-field>
+
+                <mat-form-field  class='example-full-width' required>
+                  <mat-label>Powiat</mat-label>
+                  <mat-select #districtEl name="district" formControlName="district" class="sel" (selectionChange)="getTown(vivodenshipEl.value, districtEl.value)" required>
+                    <mat-option *ngFor="let district of districts" [value]="district.id">{{district.name}}</mat-option>
+                  </mat-select>
+                </mat-form-field>
+
+                <mat-form-field  class='example-full-width' required>
+                  <mat-label>Miasto</mat-label>
+                  <mat-select class="sel" name="town" formControlName="town" required>
+                    <mat-option *ngFor="let town of towns" [value]="town.id">{{town.name}}</mat-option>
+                  </mat-select>
+                </mat-form-field>
+              </form>
+              </div>
+
+          </div>
+          <button class="btn btn-block" [disabled]='form.invalid' (click)="goToStepThree()">
+            Dalej
+          </button>
+      </div>
+  </div>
+</div>

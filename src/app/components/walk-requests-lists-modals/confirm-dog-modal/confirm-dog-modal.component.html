@@ -1,0 +1,26 @@
+<header>
+  <p class="title">Spacer z psem {{data.userName}} zakończył się !</p>
+  <p class="description">Potwierdź zakończenie spaceru, oceń psa oraz napisz opinię na podstawie tego spaceru</p>
+</header>
+<form [formGroup]="form">
+
+  <div class="d-flex flex-column justify-content-center align-items-center rate" style="margin-top: 64px">
+    <ngb-rating [max]="5" [(rate)]="currentRate"></ngb-rating>
+    <hr>
+    <p>Ocena: {{currentRate}} gwiazdki</p>
+  </div>
+
+  <div class="form-row"  style="margin-top: 64px">
+    <div class="form-group col-md-12">
+      <textarea class="form-control textarea"  formControlName="reviewAboutTheUser" rows="4" placeholder="Tutaj możesz napisać swoją opinię..."></textarea>
+      <small id="emailHelp" class="form-text text-muted">Maksimum 400 znaków.</small>
+    </div>
+  </div>
+
+  <div class="d-flex justify-content-center" style="margin-top: 34px">
+    <div class="d-flex justify-content-between">
+      <button class="cancel-changes-active" (click)="cancel()">Anuluj</button>
+      <button class="save-changes-active" (click)="onSubmit()"><i class="fa fa-check"></i> Potwierdź</button>
+    </div>
+  </div>
+</form>

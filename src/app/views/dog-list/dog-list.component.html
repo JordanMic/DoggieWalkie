@@ -1,0 +1,51 @@
+<div style="min-height: 100vh; overflow: hidden">
+<div class="row mt-5 searchbar">
+  <div class="col">
+    <button class="favourite-filter" [ngClass]="filterByFavourite ? 'red-font' : ''" (click)="toggleFavourite()">
+      <i class="fa fa-heart" aria-hidden="true"></i>
+
+    </button>
+  </div>
+  <div class="col mx-auto">
+
+    <div class="input-group">
+      <input  class="form-control py-2 border-right-0 border input-lg" type="search" value="" (keyup)="onSearch($event)"  [matAutocomplete]="auto"  placeholder="Wyszukaj innej miejscowości">
+      <span class="input-group-append bg-transparent" style="background-color:rgba(255, 255, 255, 1) !important;">
+          <div class="input-group-text bg-transparent"><i class="fa fa-search fa-5"></i></div>
+        </span>
+    </div>
+
+      <mat-autocomplete #auto="matAutocomplete">
+        <mat-option *ngFor="let option of options" [value]="option.name" (click)="selectTown(option)">
+          {{ getTownName(option) }}
+        </mat-option>
+      </mat-autocomplete>
+
+  </div>
+
+  <div class="col dogs-text-container" >
+    <span class="dogs-count">{{visibleDogs.length }}</span> <span class="dogs-count-text"> {{dogCountText}}</span>
+  </div>
+</div>
+<p class="py-2 col-md-5 mx-auto" style="text-align: center">Pokazuje wyniki dla miasta: <strong>{{this.showTown}}</strong></p>
+  <div class="row justify-content-center mt-11 results">
+    <div  *ngFor="let dog of visibleDogs">
+      <app-dog-tile  [dog]="dog" (favouriteEvent)="onMarkedFavourite($event)" ></app-dog-tile>
+    </div>
+  </div>
+
+<div *ngIf="visibleDogs.length < 1" class="empty-info5">
+  <img src="assets/icons/feets-ico.svg" style="width:15%; margin: 5% auto;" alt="feets-ico">
+  <p class="show-if-empty5">W tym mieście nie ma żadnych zarejestrowanych psów</p>
+  <p class="other-search">Wyszukaj innego obszaru</p>
+</div>
+
+<div class="row">
+  <div class="col-md-5"></div>
+    <div class="col-md-2"  *ngIf="this.hiddenDogs > 0">
+      <button class="btn btn-success show-more-button" (click)="showMore()">Wczytaj więcej ({{this.hiddenDogs}})</button>
+    </div>
+  <div class="col-md-3"></div>
+</div>
+</div>
+<app-footer-mini></app-footer-mini>

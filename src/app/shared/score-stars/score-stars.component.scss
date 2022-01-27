@@ -1,0 +1,39 @@
+
+  
+  // Source: https://newbedev.com/css-for-star-ratings-via-fontawesome
+  .score {
+    display: block;
+    font-size: 16px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .score-wrap {
+    display: inline-block;
+    position: relative;
+    height: 19px;
+  }
+  
+  .score .stars-active {
+    color: rgb(97, 0, 237);;
+  
+    position: relative;
+    z-index: 100;
+    display: inline-block;
+    overflow: hidden;
+    white-space: nowrap;
+    
+  }
+  
+  .score .stars-inactive {
+    color: grey;
+    opacity: 0.8;
+    position: absolute;
+    top: 0;
+    left: 0;
+    /* overflow: hidden; */
+  }
+
+  .right-margin {
+      margin-right: 5px;
+  }

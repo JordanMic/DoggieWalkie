@@ -1,0 +1,58 @@
+<h3>Nowe zgłoszenie wyprowadzenia psa na spacer</h3>
+
+
+<form [formGroup]="form" (submit)="onSubmit()">
+  <div class="form-row">
+    <div class="form-group col-md-12">
+      <mat-select   class="form-control input-gray"  formControlName="dogs" [multiple]="true" placeholder="Wybierz psa...">
+        <mat-option *ngFor="let dog of dogs" [value]="dog.dogProfileId">{{dog.dogName}}</mat-option>
+      </mat-select>
+    </div>
+  </div>
+
+  <div *ngFor="let row of applications; let index = index;">
+    <div class="form-row" [formGroupName]="'row' + row.id" >
+      <div class="form-group col-md-5">
+        <input type="text"  [matDatepicker]="picker" formControlName="date"  class="form-control input-gray"   placeholder="Wybierz datę" required="">
+        <mat-datepicker-toggle matSuffix [for]="picker" class="calendar-icon"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+      </div>
+      <div class="form-group col-md-3">
+        <input class="form-control input-gray" formControlName="startTime"  [ngxTimepicker]="pickers" [format]="24" placeholder="W czasie od">
+        <ngx-material-timepicker-toggle matSuffix [for]="pickers" class="time-icon"></ngx-material-timepicker-toggle>
+        <ngx-material-timepicker #pickers></ngx-material-timepicker>
+      </div>
+      <div class="form-group col-md-3">
+        <input class="form-control input-gray"  formControlName="endTime" [ngxTimepicker]="pickers2" [format]="24" placeholder="W czasie do">
+        <ngx-material-timepicker-toggle matSuffix [for]="pickers2" class="time-icon"></ngx-material-timepicker-toggle>
+        <ngx-material-timepicker #pickers2></ngx-material-timepicker>
+        <span style="color: red; font-size: 11px" *ngIf="getValidationInfo('row' + row.id)">{{getValidationDateError('row' + row.id)}}</span>
+      </div>
+      <div class="form-group col-md-1">
+        <button class="delete form-control" (click)="deleteNewApplication($event, row.id)" [disabled]="applications.length==1"><span class="material-icons">delete_outline</span></button>
+      </div>
+    </div>
+  </div>
+
+  <button class="add"[disabled]='form.invalid' (click)="addNewApplication($event)"><span>+ </span><span>Dodaj kolejny termin</span></button>
+
+  <div class="form-row">
+    <div class="form-group col-md-12">
+      <textarea class="form-control textarea" formControlName="description" id="exampleFormControlTextarea1" rows="4" placeholder="Jeśli masz dodatkowe uwagi, możesz je wpisać w tym miejscu."></textarea>
+      <small id="emailHelp" class="form-text text-muted">Maksimum 400 znaków.</small>
+    </div>
+  </div>
+
+
+  <p class="info-text">[Notka o odpowiedzialnosci] Serwis DoggieWalkie nie bierze odpowiedzialności za psa oraz sytuacje związane ze spacerem/opieką. W momencie przekazania psa przez właściciela ponosisz pełną odpowiedzialność za wyprowadzanego psa oraz szkody wyrządzone przez zwierze osobom, innym psom lub mieniu.</p>
+
+  <div class="d-flex justify-content-end button-group">
+    <button class="save-changes-active" type="submit" [disabled]='form.invalid'>Zgłoś potrzebę</button>
+  </div>
+
+</form>
+
+
+
+
+

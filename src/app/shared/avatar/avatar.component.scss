@@ -1,0 +1,23 @@
+.avatar-body {
+  overflow: hidden;
+
+  &.round {
+    border-radius: 50%;
+
+
+    img {
+      border-radius: 50%;
+    }
+  }
+}
+
+
+
+.avatar-body.initials {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  text-shadow: 0 0 4px #222;
+}
+

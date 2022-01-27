@@ -1,0 +1,105 @@
+<section class="header">
+  <h2 class="header-text">Forum</h2>
+</section>
+
+<div class="container" style="margin: 50px auto" *ngIf="categoryPageResponse && homePageData">
+        <div class="ibox-content m-b-sm border-bottom">
+          <div class="p-xs d-flex">
+            <div class="pull-left m-r-md">
+              <i class="fa fa-paw text-navy mid-icon"></i>
+            </div>
+            <div style="margin-left: 30px">
+              <h2>{{categoryPageResponse.categoryName}}</h2>
+              <span>{{categoryPageResponse.shortDescription}}</span>
+            </div>
+          </div>
+        </div>
+
+<div class="d-flex justify-content-center" style="margin: 50px auto">
+
+  <div class="col-sm-12 col-md-9">
+    <div class=" wrapper-content animated fadeInRight">
+      <div class="ibox-content forum-container">
+
+            <div class="forum-title">
+              <h3>Posty:</h3>
+            </div>
+
+            <div class="forum-item-disabled active" *ngIf="categoryPageResponse.categoryPostsModels.length == 0">
+              <div class="row">
+                <div class="col-sm-12 col d-flex justify-content-between">
+                  <div class="forum-icon">
+                    <i class="fa fa-spinner"></i>
+                  </div>
+                  <a class="forum-item-title">W tej kategorii nie ma jeszcze żadnych postów</a>
+                  <div class="forum-sub-title">O czym chciałbyś podyskutować? Bądź pierwszą osobą która doda tutaj post</div>
+                </div>
+              </div>
+            </div>
+
+            <div class="forum-item active" (click)="goToPostPage(posts.postId)" *ngFor="let posts of categoryPageResponse.categoryPostsModels">
+              <div class="row">
+                <div class="col-sm-12 col-md-7">
+                  <div class="forum-icon">
+                    <i class="fa fa-question"></i>
+                  </div>
+                  <a class="forum-item-title">{{posts.title}}</a>
+                  <div class="forum-sub-title">{{posts.content}}</div>
+                </div>
+                <div class="col forum-info">
+                  <span class="views-number">{{posts.numberOfComments}}</span>
+                  <div>
+                    <small>Komentarze</small>
+                  </div>
+                </div>
+                <div class="col d-flex forum-info justify-content-center" *ngIf="posts.lastActiveFirstName != null">
+                  <app-avatar *ngIf="posts.lastActiveFirstName"
+                              [initialsSource]="[posts.lastActiveFirstName, posts.lastActiveLastName]"
+                              [imageFile]="posts.lastActiveUserAvatar || null"
+                              [salt]="posts.lastActiveFirstName"
+                              [size]="36">
+
+                  </app-avatar>
+                  <div class="align-items-center">
+                    <p class="small"> Ostatnio dnia: {{posts.lastActiveDate | date: 'dd.MM.yyyy'}}</p>
+                  </div>
+                </div>
+                <div class="col d-flex forum-info justify-content-center" *ngIf="posts.lastActiveFirstName == null">
+                  <div class="align-items-center">
+                    <p class="small">Nikt nie dodał komentarza</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-12 col-md-3">
+
+        <button class="new-post" (click)="addNewPost()">Dodaj nowy post</button>
+
+        <div class="ibox-content forum-container" style="margin-top: 30px">
+          <div class="forum-title right-list-item" style="text-align: center">
+            <h3 (click)="goToHomePage()">Kategorie:</h3>
+          </div>
+          <ul>
+            <li class="right-list-item" (click)="goToCategory(category.categoryId)" *ngFor="let category of homePageData.categories">{{category.category}}</li>
+          </ul>
+        </div>
+
+        <div class="ibox-content forum-container" style="margin-top: 30px">
+          <div class="forum-title" style="text-align: center;">
+            <h3>Oto twoje punkty reputacji</h3>
+          </div>
+          <p style="text-align: center; margin: 50px auto; font-size: 42px; font-weight: bolder ;">{{categoryPageResponse.myReputationPoints}}</p>
+        </div>
+
+      </div>
+        </div>
+      </div>
+
+<app-footer></app-footer>
+
+
+

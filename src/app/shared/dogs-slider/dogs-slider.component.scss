@@ -1,0 +1,16 @@
+.dog-slider {
+  span {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  app-avatar {
+    margin-right: 20px;
+  }
+}
+
+:host ::ng-deep .mat-tab-label {
+  height: 60px;
+
+}

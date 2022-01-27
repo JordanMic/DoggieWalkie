@@ -1,0 +1,21 @@
+.descript{
+  display: flex;
+  flex-direction: column;
+
+}
+
+.header{
+  display: flex;
+  justify-content: center;
+  background-color: orange;
+}
+
+.info{
+  display: flex;
+  justify-content: center;
+  background-color: blue;
+}
+
+div{
+  width: 100%;
+}

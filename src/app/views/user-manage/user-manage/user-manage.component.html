@@ -1,0 +1,11 @@
+
+<app-sidebar-and-content-template
+  [aboveContentSection]="dogSlider"
+  [config]="config"
+  (selectedTile)="selectedTile($event)"
+></app-sidebar-and-content-template>
+
+<ng-template #dogSlider>
+  <app-dogs-slider></app-dogs-slider>
+</ng-template>
+

@@ -1,0 +1,79 @@
+<app-dogs-slider></app-dogs-slider>
+
+     <div class="mt-5"></div>
+
+     <div class="row bar d-flex">
+          <div class="my-auto col-xs-8"></div>
+           <div class="d-flex ">
+             <div class="name" style="margin-right: 60px">Lista psich spacerów</div>
+              <div class=" scheduled-walks" style="margin-right: 30px" (click)="getWalks(dogId)">Zaplanowane spacery</div>
+              <div class="history" (click)="history(dogId)">Historia</div>
+           </div>
+          <div class="my-auto col-xs-4 ml-auto report-button"><button type="button" class="btn btn-secondary openRequest"(click)="open()">+ Zgłoś potrzebę wyprowadzenia</button></div>
+     </div>
+
+<div class="propsals" *ngIf="dogWalks">
+  <div  *ngIf="dogWalks.length < 1" class="empty-info3">
+    <img src="assets/icons/feets-ico.svg" style="width:15%; margin: 5% auto;" alt="feets-ico">
+    <p class="show-if-empty3">Nie zgłosiłeś żadnych potrzeb wyprowadzenia dla tego psa</p>
+    <p class="other-search">może czas na spacer ? </p>
+  </div>
+     <div class="offer-container" *ngFor="let walk of dogWalks">
+          <mat-expansion-panel  multi  (opened)="openDropdown(walk)" (closed)="walk.showOffers = false">
+               <mat-expansion-panel-header>
+                 <mat-panel-title>
+                    {{walk.dateStart| date:'dd.MM.yyyy'}}
+                 </mat-panel-title>
+                 <mat-panel-description>
+                    <div class="walk-times" *ngIf="walk.status=='WAITING'">
+                      {{walk.dateStart| date:'HH:mm'}} -  {{walk.dateEnd| date:'HH:mm'}}
+                    </div>
+                 </mat-panel-description>
+                 <div class="accepted" *ngIf="walk.status=='ACCEPTED'">{{walk.status? 'Zaakceptowany' : ''}}</div>
+                 <div class="status" *ngIf="walk.status=='WAITING'">{{walk.status? 'Oczekuje' : ''}}</div>
+                 <div class="ended" *ngIf="walk.status=='COMPLETED'">{{walk.status? 'Spacer czeka na potwierdzenie zakończenia' : ''}}</div>
+                 <span class="showHideAnswers">{{walk.showOffers ? 'Ukryj odpowiedzi' : 'Pokaż odpowiedzi'}}   </span>
+
+
+               </mat-expansion-panel-header>
+            <ng-container *ngIf="walk.proposals">
+              <div  *ngIf="walk.proposals.length < 1">
+                <p style="opacity: 0.4">Jeszcze nikt nie zgłosił propozycji wyprowadzenia dla tego zgłoszenia</p>
+              </div>
+              <div class="offers-wrapper" *ngFor="let proposal of walk.proposals; let i = index">
+                <div class="row offers-dropdown d-flex h-100">
+                  <div class="col-md-1">
+                  </div>
+                  <div class="col-md-1 avatar-wrapper">
+                    <app-avatar style="cursor: pointer;" (click)="goToProfile(proposal.userBaseId)" *ngIf="proposal.userFirstName" [initialsSource]="[proposal.userFirstName[0].toUpperCase()]"
+                                [imageFile]="proposal.userAvatar || null" [salt]="proposal.userFirstName" [round]=true [size]="40"></app-avatar>
+                  </div>
+                  <div class="col-md-1 my-auto">
+                    <p class="align-middle name-wrapper" style="cursor: pointer;"  (click)="goToProfile(proposal.userBaseId)">{{proposal.userFirstName}}</p>
+                  </div>
+                  <div class="col" style="text-align: left">
+                    <app-score-stars [score]='proposal.score || 0'></app-score-stars>
+                  </div>
+                  <div class="col-md-1">
+                  </div>
+                  <div style="text-align: left" class="col-md-4 my-auto">
+                    <p>{{proposal.dateStart | date: 'HH:mm'}} - {{proposal.dateEnd | date: 'HH:mm'}}</p>
+                  </div>
+                  <div class="col-md-2 my-auto offer-actions">
+                    <i class="fa fa-comments-o" aria-hidden="true" (click)="openChat(proposal)" matTooltip="Napisz do użytkownika"></i>
+                    <i class="fa fa-times-circle" *ngIf="walk.status=='WAITING' || walk.status=='ACCEPTED'" aria-hidden="true" (click)="reject(proposal.proposalId, walk.requestId)" matTooltip="Odrzuć propozycję"></i>
+                    <i class="fa fa-check-circle" *ngIf="walk.status=='WAITING'" aria-hidden="true" (click)="accept(proposal.proposalId, walk.requestId, proposal.userFirstName, proposal.dateStart, proposal.dateEnd, walk.dateStart)" matTooltip="Zaakceptuj propozycję"></i>
+                    <i class="fa fa-check-circle" *ngIf="walk.status=='COMPLETED'" aria-hidden="true" (click)="confirm(proposal.userFirstName, walk.requestId)" matTooltip="Potwierdź zakończenie i oceń użytkownika"></i>
+                  </div>
+                </div>
+                <hr *ngIf="walk.proposals.length-1 > i">
+              </div>
+            </ng-container>
+
+          </mat-expansion-panel>
+
+     </div>
+
+
+</div>
+

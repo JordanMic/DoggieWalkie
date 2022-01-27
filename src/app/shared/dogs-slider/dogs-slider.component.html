@@ -1,0 +1,31 @@
+<div class="dog-slider">
+  <mat-tab-group>
+    <mat-tab *ngIf="showAll">
+      <ng-template mat-tab-label>
+        <span (click)="chooseTab()">
+          <app-avatar
+            [size]="42"
+            [initialsSource]="['Wszystkie']"
+            [colorInHex]="'#6100ed'"
+          ></app-avatar>
+        Wszystkie
+        </span>
+      </ng-template>
+    </mat-tab>
+
+    <mat-tab *ngFor="let dog of dogs" >
+      <ng-template mat-tab-label>
+        <span (click)="chooseTab(dog.dogProfileId)">
+          <app-avatar
+            [size]="42"
+            [initialsSource]="[dog.dogName]"
+            [salt]="dog.dogName"
+            [imageFile]="dog?.avatar || null"
+          ></app-avatar>
+          {{ dog.dogName }}
+        </span>
+      </ng-template>
+    </mat-tab>
+
+  </mat-tab-group>
+</div>

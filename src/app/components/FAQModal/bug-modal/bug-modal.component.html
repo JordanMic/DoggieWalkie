@@ -1,0 +1,40 @@
+<header>
+  <p class="title">Znalazłeś błąd w naszej aplikacji?</p>
+  <p class="description">Tutaj możesz go zgłosić</p>
+</header>
+
+<form [formGroup]="form" (submit)="onSubmit()">
+  <div class="form-row">
+    <div class="form-group col-md-12">
+      <textarea class="form-control textarea"  formControlName="contents" rows="4" placeholder="Opisz co się stało…"></textarea>
+      <small id="emailHelp" class="form-text text-muted">Maksimum 400 znaków.</small>
+    </div>
+  </div>
+
+<!--  <div class="d-flex d-flex justify-content-start w-100">-->
+<!--    <input type="file" class="btn" (change)="fileChangeEvent($event)"  />-->
+<!--  </div>-->
+
+<!--  <image-cropper-->
+<!--    [imageChangedEvent]="imageChangedEvent"-->
+<!--    [maintainAspectRatio]="true"-->
+<!--    format="png"-->
+<!--    (imageCropped)="imageCropped($event)"-->
+<!--    (imageLoaded)="imageLoaded()"-->
+<!--    (cropperReady)="cropperReady()"-->
+<!--    (loadImageFailed)="loadImageFailed()"-->
+<!--    [resizeToWidth]="512"-->
+<!--    [resizeToHeight]="512"-->
+<!--  ></image-cropper>-->
+
+
+
+  <div class="d-flex justify-content-between" style="margin-top: 34px">
+    <span class="material-icons">emoji_objects</span>
+    <p class="info-text">Nieustannie pracujemy nad ulepszeniem DoggieWalkie. Twoja wiadomość z pewnością nam w tym pomoże. Dziękujemy za Twoją pomoc!</p>
+    <div class="d-flex justify-content-end button-group">
+      <button class="save-changes-active" type="onSubit" [disabled]="this.form.invalid">Wyślij</button>
+    </div>
+  </div>
+
+</form>

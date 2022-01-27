@@ -1,0 +1,17 @@
+<div class="row" *ngIf="config">
+    <div class="col-2 sidebar">
+      <div class="backward-section" *ngIf="config.back">
+        <button mat-flat-button (click)="goToLink(config.back.link)"><mat-icon color="primary" aria-hidden="false" >chevron_left</mat-icon> {{config.back.text}}</button>
+      </div>
+      <div class="section" *ngFor="let section of config.sections">
+        <h3 class="header">{{ section.header | uppercase }}</h3>
+        <button mat-flat-button *ngFor="let tile of section.tiles" [ngClass]="{ 'active': currentTile === tile }" (click)="goToLink(tile.link, tile.validators)" ><span>{{ tile.text }}</span></button>
+      </div>
+    </div>
+    <div class="col-9 content">
+      <div *ngIf="currentSectionHasAboveElement()">
+        <ng-container *ngTemplateOutlet="aboveContentSection"></ng-container>
+      </div>
+      <router-outlet></router-outlet>
+    </div>
+  </div>

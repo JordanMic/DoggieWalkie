@@ -1,0 +1,28 @@
+<div class="footer-dark">
+  <footer>
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-6 col-md-3 item">
+          <h3>Obsługa</h3>
+          <ul>
+            <li><a (click)="goToFaq()">FAQ</a></li>
+            <li><a (click)="goToFaq()">Zgłoś błąd</a></li>
+          </ul>
+        </div>
+        <div class="col-sm-6 col-md-3 item">
+          <h3>Dla użytkownika</h3>
+          <ul>
+            <li><a [routerLink]="['/terms']">Regulamin</a></li>
+            <li><a [routerLink]="['/privacy']">Polityka prywatności</a></li>
+          </ul>
+        </div>
+        <div class="col-md-6 item text">
+          <h3>O aplikacji</h3>
+          <p>Aplikacja DoggieWalkie powstała z myślą połączenia psów z ich miłośnikami. Jej głównym założeniem jest wsparcie właścicieli w wyprowadzaniu ich pupili jak i danie użytkownikom radości z możliwości spędzenia miło czasu z czworonogami.</p>
+        </div>
+<!--        <div class="col item social"><a href="#"><i class="fa fa-facebook-f"></i></a><a href="#"><i class="fa fa-twitter"></i></a><a href="#"><i class="fa fa-instagram"></i></a></div>-->
+      </div>
+      <p class="copyright">DoggieWalkie © 2022</p>
+    </div>
+  </footer>
+</div>

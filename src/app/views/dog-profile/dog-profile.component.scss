@@ -1,0 +1,51 @@
+
+  .owner-details-card .container {
+    background-color: rgb(255, 255, 255);
+    width: 20%;
+    padding: 0.5em;
+  }
+
+  .back-main{
+    font-size: 62px;
+    color: white;
+  }
+
+  .mat-form-field + .mat-form-field {
+    margin-left: 8px;
+  }
+
+  .container{
+    margin-bottom: 16px !important;
+  }
+  @media screen and (max-width: 1080px) {
+    .container{
+      width: 90%;
+    }
+  }
+
+  .acordiann{
+    margin: auto;
+    width: 40%;
+    background-color: white !important;
+    box-shadow: 0 1px 3px 0 rgb(0 0 0 / 20%) !important;
+  }
+  @media screen and (max-width: 1080px) {
+    .acordiann{
+      width: 90%;
+    }
+  }
+
+  .walks{
+    margin: 0 0 8px;
+    padding: 14px 16px;
+    border-radius: 4px;
+    border: solid 1px lightgray;
+    }
+
+
+
+  .btn:hover{
+    transition: .3s;
+    background-color: #873df2;
+  }
+

@@ -1,0 +1,28 @@
+<ngb-carousel *ngIf="images">
+  <ng-template ngbSlide>
+    <div class="picsum-img-wrapper">
+      <img [src]="images[0]" alt="First slide">
+    </div>
+    <div class="carousel-caption">
+      <div class="carousel-wrapper-bgr">
+        <div class="carousel-padding">
+          <h3>Pomóż innym wyjść z psem na spacer</h3>
+          <button type="button" class="btn btn-primary" (click)="goToDogListPage()">Znajdź opiekuna</button>
+        </div>
+      </div>
+    </div>
+  </ng-template>
+  <ng-template ngbSlide>
+    <div class="picsum-img-wrapper">
+      <img [src]="images[1]" alt="Second slide">
+    </div>
+    <div class="carousel-caption">
+      <div class="carousel-wrapper-bgr">
+        <div class="carousel-padding">
+          <h3>Znajdź kompana do spacerów dla Twojego psa</h3>
+          <button type="button" class="btn btn-primary" (click)="goToDogListPage()">Znajdź kompana</button>
+        </div>
+      </div>
+    </div>
+  </ng-template>
+</ngb-carousel>

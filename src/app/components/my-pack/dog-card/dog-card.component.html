@@ -1,0 +1,25 @@
+<div class="card" style="width: 21rem;">
+  <div class="card-img-top" [routerLink]="['/dog', dog.dogProfileId]">
+    <div class="avatar">
+      <app-avatar  *ngIf="dog.dogName"
+                   [initialsSource]="[dog.dogName]"
+                   [imageFile]="dog.avatar || null"
+                   [salt]="dog.dogName"
+                   [round]=false
+                   [size]="190"
+
+      ></app-avatar>
+    </div>
+  </div>
+
+  <div class="card-body">
+    <p class="card-text profile-name text-center font-weight-bold">
+      {{dog.dogName}}
+    <p class="text-center"><span class="dot" [ngClass]="dog.status ? 'green' : 'red'"></span>{{dog.status ? 'Czeka na spacer' : 'Niedostępny'}}</p>
+    <div class="buttons d-flex flex-column align-items-center">
+      <button type="button" class="btn-walk btn btn-primary" (click)="open()">Zgłoś spacer</button>
+      <button type="button" class="btn-profile btn btn-secondary"  [routerLink]="['/manage/dog-profile-settings']">Ustawienia profilu</button>
+    </div>
+  </div>
+</div>
+

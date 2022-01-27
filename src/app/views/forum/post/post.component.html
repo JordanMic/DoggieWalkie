@@ -1,0 +1,162 @@
+<section class="header">
+  <h2 class="header-text">Forum</h2>
+</section>
+
+<div class="container" style="margin: 50px auto" *ngIf="postPageResponse">
+  <div class="ibox-content m-b-sm border-bottom" *ngIf="postPageResponse.userProfileFirstName">
+    <div class="forum-item active" style="border: none">
+      <div class="row">
+        <div class="col-md-1 forum-info">
+          <div>
+            <small style="cursor: pointer;" (click)="goToProfile(postPageResponse.userProfileId)">{{postPageResponse.userProfileFirstName}}</small>
+          </div>
+          <app-avatar *ngIf="postPageResponse.userProfileFirstName" (click)="goToProfile(postPageResponse.userProfileId)"
+                      [initialsSource]="[postPageResponse.userProfileFirstName, postPageResponse.userProfileLastName]"
+                      [imageFile]="postPageResponse.userProfileAvatar || null"
+                      [salt]="postPageResponse.userProfileFirstName"
+                      [size]="65" style="cursor: pointer">
+
+          </app-avatar>
+          <p class="rep" matTooltip="Punkty reputacji"  matTooltipPosition="left">{{postPageResponse.reputationPoints}}</p>
+          <div class="badge">
+            <img class="badge-img" *ngIf="postPageResponse.reputationPoints <= 300" src="assets/badges/score-badges-icons-lvl-1.svg"  alt="Logo" matTooltip="Ranga: Początkujący"  matTooltipPosition="left">
+            <img class="badge-img" *ngIf="postPageResponse.reputationPoints >= 301 && postPageResponse.reputationPoints  <= 750" src="assets/badges/score-badges-icons-lvl-2.svg"  alt="Logo"  matTooltip="Ranga: Aspirujący"  matTooltipPosition="left">
+            <img class="badge-img" *ngIf="postPageResponse.reputationPoints  >= 751 && postPageResponse.reputationPoints <= 1500" src="assets/badges/score-badges-icons-lvl-3.svg"  alt="Logo" matTooltip="Ranga: Wielbiciel psów" matTooltipPosition="left">
+            <img class="badge-img" *ngIf="postPageResponse.reputationPoints  >= 1501" src="assets/badges/score-badges-icons-lvl-4.svg"  alt="Logo" matTooltip="Ranga: Wielki miłośnik psów" matTooltipPosition="left">
+          </div>
+
+          <div>
+            <small></small>
+          </div>
+        </div>
+        <div class="col-md-10">
+          <a  class="forum-item-title" style="margin-left: 20px; text-decoration: none">{{postPageResponse.title}}</a>
+          <div class="forum-sub-title" style="white-space: pre-wrap">{{postPageResponse.content}}</div>
+        </div>
+
+
+        <div class="col-md-1 forum-info">
+                            <span class="views-number">
+                                {{postPageResponse.numberOfLikes}}
+                            </span>
+          <div>
+            <small>Polubienia</small>
+          </div>
+          <div class="d-flex justify-content-between" style="margin-top: 5px">
+            <div>
+              <button class="likeButton" [disabled]="postPageResponse.like === true" (click)="postLike()"><i class="fa fa-thumbs-up like"></i></button>
+            </div>
+            <div>
+              <button class="likeButton" (click)="postReport()"><i class="fa fa-exclamation-circle like"></i></button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="d-flex justify-content-center" style="margin: 50px auto">
+    <div class="row">
+      <div class="col-sm-12 col-md-9">
+        <div class="wrapper wrapper-content animated fadeInRight">
+
+          <div class="ibox-content forum-container" *ngIf="postPageResponse.commentModels">
+
+            <div class="forum-title">
+              <h3>Posty:</h3>
+            </div>
+
+            <div style="margin-bottom: 30px" class="forum-item-disabled active" *ngIf="postPageResponse.commentModels.length == 0">
+              <div class="row">
+                <div class="col-sm-12 col d-flex justify-content-between">
+                  <div class="forum-icon">
+                    <i class="fa fa-spinner"></i>
+                  </div>
+                  <a class="forum-item-title">W tej kategorii nie ma jeszcze żadnych komentarzy</a>
+                  <div class="forum-sub-title">Co myślisz o tym temacie ? Podziel się tym z innymi</div>
+                </div>
+              </div>
+            </div>
+
+            <div class="forum-item-disabled active" *ngIf="postPageResponse.commentModels.length > 0">
+              <div class="row">
+                <div class="col-sm-12 col d-flex justify-content-between">
+                  <div class="col forum-icon">
+                    <i class="fa fa-bell"></i>
+                  </div>
+                  <a class="col-8 forum-item-title">Pamiętaj o przestrzeganiu regulaminu naszego forum</a>
+                  <div class="col-4 forum-sub-title">Regulamin znajdziesz <span class="link-rules" (click)="goToRulesPage()">tutaj</span></div>
+                </div>
+              </div>
+            </div>
+
+            <div class="forum-item active" *ngFor="let comment of postPageResponse.commentModels; let i = index">
+              <div class="row">
+                <div class="col-md-1 forum-info" *ngIf="postPageResponse.userForumModels[i]">
+                  <div class="d-flex flex-column align-items-center">
+                    <app-avatar *ngIf="postPageResponse.userForumModels[i].userProfileFirstName" (click)="goToCommentProfile(postPageResponse.userForumModels[i].userProfileId)" [initialsSource]="[postPageResponse.userForumModels[i].userProfileFirstName, postPageResponse.userForumModels[i].userProfileLastName]" [imageFile]="postPageResponse.userForumModels[i].userProfileAvatar|| null" [salt]="postPageResponse.userForumModels[i].userProfileFirstName" [size]="50" style="cursor: pointer;"></app-avatar>
+                    <p class="rep" matTooltip="Punkty reputacji"  matTooltipPosition="left">{{postPageResponse.userForumModels[i].userReputationPoints}}</p>
+                    <div class="badge">
+                      <img class="badge-img" *ngIf="postPageResponse.userForumModels[i].userReputationPoints <= 300" src="assets/badges/score-badges-icons-lvl-1.svg"  alt="Logo" matTooltip="Ranga: Początkujący"  matTooltipPosition="left">
+                      <img class="badge-img" *ngIf="postPageResponse.userForumModels[i].userReputationPoints >= 301 && postPageResponse.userForumModels[i].userReputationPoints  <= 750" src="assets/badges/score-badges-icons-lvl-2.svg"  alt="Logo"  matTooltip="Ranga: Aspirujący"  matTooltipPosition="left">
+                      <img class="badge-img" *ngIf="postPageResponse.userForumModels[i].userReputationPoints  >= 751 && postPageResponse.userForumModels[i].userReputationPoints  <= 1500" src="assets/badges/score-badges-icons-lvl-3.svg"  alt="Logo" matTooltip="Ranga: Wielbiciel psów" matTooltipPosition="left">
+                      <img class="badge-img" *ngIf="postPageResponse.userForumModels[i].userReputationPoints  >= 1501" src="assets/badges/score-badges-icons-lvl-4.svg"  alt="Logo" matTooltip="Ranga: Wielki miłośnik psów" matTooltipPosition="left">
+                    </div>
+                  </div>
+                  <div>
+                    <small></small>
+                  </div>
+                </div>
+                <div class="col-md-9" *ngIf="postPageResponse.userForumModels[i]">
+                  <div class="forum-sub-title" style="white-space: pre-wrap">{{comment.content}}</div>
+                  <p class="forum-sub-title" *ngIf="postPageResponse.userForumModels[i].userProfileFirstName" (click)="goToCommentProfile(postPageResponse.userForumModels[i].userProfileId)" style="font-weight: 800; cursor: pointer">{{postPageResponse.userForumModels[i].userProfileFirstName}}</p>
+                  <p class="forum-sub-title date-info" style="margin-top: 15px">{{comment.createdAt | date: 'dd.MM.yyyy'}}</p>
+                </div>
+                <div class="col-md-2 forum-info">
+                  <span class="views-number">{{comment.numberOfLikes}}</span>
+                  <div>
+                    <small>Polubienia</small>
+                  </div>
+                  <div class="d-flex justify-content-around" style="margin-top: 5px">
+                    <div>
+                      <button class="likeButton" [disabled]='comment.like === true' (click)="commentLike(comment.commentId)" ><i class="fa fa-thumbs-up like"></i></button>
+                    </div>
+                    <div>
+                      <button class="likeButton" (click)="commentReport(comment.commentId)"><i class="fa fa-exclamation-circle like"></i></button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <button class="new-post" (click)="addNewComment()">Dodaj nowy komentarz</button>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-12 col-md-3">
+
+        <div class="ibox-content forum-container">
+          <div class="forum-title right-list-item" style="text-align: center">
+            <h3 (click)="goToHomePage()">Kategorie:</h3>
+          </div>
+          <ul>
+            <li class="right-list-item" (click)="goToCategory(category.categoryId)" *ngFor="let category of homePageData.categories">{{category.category}}</li>
+          </ul>
+        </div>
+
+
+
+        <div class="ibox-content forum-container" style="margin-top: 30px">
+          <div class="forum-title" style="text-align: center;">
+            <h3>Oto twoje punkty reputacji</h3>
+          </div>
+          <p style="text-align: center; margin: 50px auto; font-size: 42px; font-weight: bolder ;">{{postPageResponse.myReputationPoints}}</p>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>
+<app-footer></app-footer>

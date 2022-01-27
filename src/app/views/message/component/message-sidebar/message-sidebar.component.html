@@ -1,0 +1,29 @@
+<div class="content">
+  <div class="backward-section">
+    <button mat-flat-button (click)="goToMainPage()"><mat-icon color="primary" aria-hidden="false" >chevron_left</mat-icon> Wróć do strony głównej</button>
+  </div>
+<!--  <hr>-->
+<!--  <div class="search">-->
+<!--    <mat-form-field (change)="search($event)" appearance="fill" class="mt-4 pt-1">-->
+<!--      <mat-label>Szukaj</mat-label>-->
+<!--      <mat-icon matPrefix>search</mat-icon>-->
+<!--      <input type="tel" [formControl]="searchBox" matInput>-->
+<!--    </mat-form-field>-->
+<!--  </div>-->
+  <hr>
+  <div class="message-threads">
+
+    <h3>Ostatnie wiadomości</h3>
+
+    <app-message-list-element
+      *ngFor="let messageThread of messageThreads"
+      (openChat$)="openChat$.emit($event)"
+      [messageThread]="messageThread"
+    ></app-message-list-element>
+
+    <div class="no-threads" *ngIf="!messageThreads.length">
+      <h2>Brak wątków</h2>
+    </div>
+  </div>
+
+</div>

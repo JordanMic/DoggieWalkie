@@ -1,0 +1,39 @@
+<div class="container-fluid vh-100 cont">
+  <div class="row d-flex justify-content-center h-100 align-items-center">
+    <div class="progress"></div>
+    <div class="col-sm-6 col-md-4 col-md-offset-4 contents">
+          <a class="navbar-brand" href="/">
+            <img src="assets/logo/logo.svg" style="width:170px;" alt="Logo">
+          </a>
+          <div class="account-wall">
+              <h3>Co inni powinni o Tobie wiedzieć?</h3>
+
+              <div class="container">
+                <form class="form-signin" [formGroup]="form">
+
+                <mat-form-field class="example-full-width">
+                  <mat-label>Telefon</mat-label>
+                  <span matPrefix>+48 &nbsp;</span>
+                  <input name="phoneNumber" formControlName="phoneNumber" type="tel" matInput placeholder="123456789" ngModel pattern="^[4-9]{1}\d{8}$">
+                </mat-form-field>
+
+                <mat-form-field class="example-full-width">
+                  <mat-label>Nagłówek</mat-label>
+                  <input matInput type="text" name="header" formControlName="header" placeholder="Nagłówek" required>
+                </mat-form-field>
+
+                <mat-form-field class="example-full-width">
+                  <mat-label>Opowiedz coś o sobie</mat-label>
+                  <textarea formControlName="shortBio" name="shortBio" matInput placeholder="Pare słów o sobie..."></textarea>
+                </mat-form-field>
+                </form>
+
+              </div>
+
+            </div>
+          <button class="btn btn-block" [disabled]='form.invalid' (click)="goToStepFour()">
+            Dalej
+          </button>
+      </div>
+  </div>
+</div>

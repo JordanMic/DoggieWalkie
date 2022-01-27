@@ -1,0 +1,12 @@
+<div class="message-thread" *ngIf="messageThread" (click)="openChat(messageThread)">
+  <app-avatar
+    [initialsSource]="[messageThread.participant.firstName || messageThread.participant.username, messageThread.participant.lastName || messageThread.participant.username]"
+    [imageFile]="messageThread.participant.avatar"
+    [salt]="messageThread.participant.username"
+  ></app-avatar>
+  <div class="userdata">
+    <p class="name">{{messageThread.participant.firstName}}</p>
+    <p class="last-message">{{ getLastSend(messageThread) | date:'medium'}}</p>
+  </div>
+  <div class="unread" *ngIf="messageThread.unread"></div>
+</div>

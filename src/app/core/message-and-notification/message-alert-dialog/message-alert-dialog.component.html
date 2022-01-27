@@ -1,0 +1,12 @@
+<div class="content">
+  <div class="header">
+    Wiadomość od: {{data.thread.participant.firstName}}
+  </div>
+  <hr>
+  <p>{{data.model.value.messageModel.content}}</p>
+  <hr>
+  <mat-dialog-actions>
+    <button (click)="replay()" mat-button class="save-changes-active">Odpowiedz</button>
+    <button (click)="close()" mat-button class="save-changes-active">Odrzuć</button>
+  </mat-dialog-actions>
+</div>

@@ -1,0 +1,38 @@
+<div class="container-fluid vh-100 cont">
+
+  <app-danger-wrong-login *ngIf="danger === true"></app-danger-wrong-login>
+
+  <app-warning-seasion *ngIf="warning === true"></app-warning-seasion>
+
+  <div class="row d-flex justify-content-center h-100 align-items-center">
+      <div class="col-sm-6 col-md-4 col-md-offset-4 contents">
+          <a class="navbar-brand" href="/">
+            <img src="assets/logo/logo.svg" style="width:170px;" alt="Logo">
+          </a>
+          <div class="account-wall">
+            <h2 style="text-align: center; color: darkred">{{error}}</h2>
+              <h3>Zaloguj się do aplikacji</h3>
+              <form class="form-signin" [formGroup]="form">
+
+                <mat-form-field class="example-full-width">
+                  <mat-label>Login lub email</mat-label>
+                  <input matInput type="text" name="login" formControlName="login" placeholder="Podaj swój login lub email" required>
+                  <mat-error *ngIf="login.invalid">{{getErrorLoginMessage()}}</mat-error>
+                </mat-form-field>
+
+                <mat-form-field class="example-full-width">
+                  <mat-label>Hasło</mat-label>
+                  <input matInput type="password" name="password" formControlName="password" placeholder="Podaj swoje hasło" (keyup.enter)="onClick()" required>
+                  <mat-error *ngIf="password.invalid">{{getErrorPasswordMessage()}}</mat-error>
+                </mat-form-field>
+
+                <p class="text-center info"><a (click)="openPasswordRemind()">Zapomniałeś hasła?</a></p>
+              </form>
+          </div>
+          <button class="btn btn-block" (click)="onClick()" [disabled]='form.invalid'>
+            Zaloguj się
+          </button>
+          <p class="text-center new-account">Nie masz jeszcze konta? <a class="info" (click)="goToSignUp()">Załóż konto</a></p>
+      </div>
+  </div>
+</div>

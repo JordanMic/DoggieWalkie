@@ -1,0 +1,44 @@
+.content {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+
+  .backward-section {
+    display: flex;
+    button {
+      align-self: center;
+      margin: 32px auto;
+      background-color: #f8f8f8;
+      color: #727272;
+    }
+  }
+
+  hr {
+    padding: 0;
+    margin: 0;
+  }
+
+  .search {
+    align-items: center;
+    justify-items: center;
+    text-align: center;
+  }
+
+  .message-threads {
+    overflow-y: scroll;
+    position: relative;
+    flex-grow: 1;
+
+    h3 {
+      margin: 20px 0;
+      text-transform: uppercase;
+      text-align: center;
+      color: rgba(114, 114, 114, 0.5);
+    }
+
+    .no-threads {
+      text-align: center;
+      color: rgba(114, 114, 114, 0.5);
+    }
+  }
+}

@@ -1,0 +1,169 @@
+@import '../../app.component.scss';
+
+
+*{
+  font-family: 'Roboto', sans-serif;
+  font-weight: 400;
+}
+
+.alert{
+  position: absolute;
+  top: 5%;
+  left: 50%;
+  transform: translateX(-50%);
+  margin: 0 auto;
+  display:none;
+
+}
+
+.cont{
+  background-color: $background;
+  height: 100vh;
+}
+
+.visible{
+  display: block;
+}
+
+div h3{
+  font-size: 2.0rem;
+  font-weight: 500;
+  text-align: center;
+}
+.contents{
+  max-width: 40.0rem;
+}
+
+a{
+  color: $prim;
+}
+
+.link{
+  color: $prim;
+}
+
+.link:hover{
+  text-decoration: underline;
+}
+
+.form-signin
+{
+    max-width: 33.0rem;
+    padding: 1.5rem;
+    margin: 0 auto;
+}
+.form-signin .form-signin-heading, .form-signin .checkbox
+{
+    margin-bottom: 10px;
+}
+.form-signin .checkbox
+{
+    font-weight: normal;
+}
+.form-signin .form-control
+{
+    position: relative;
+    font-size: 1.6rem;
+    color: $prim;
+    height: auto;
+    padding: 1.0rem;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    border-style: none;
+}
+
+.form-signin input[type="text"]
+{
+
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+}
+.form-signin input[type="password"]
+{
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+}
+.account-wall
+{
+    margin-top: 2.0rem;
+    padding: 2.0rem 0px 2.0rem 0px;
+    background-color: $white;
+    -moz-box-shadow: 0px 0.2rem 0.2rem rgba(0, 0, 0, 0.3);
+    -webkit-box-shadow: 0px 0.2rem 0.2rem rgba(0, 0, 0, 0.3);
+
+}
+.login-title
+{
+    color: #555;
+    font-size: 1.8rem;
+    font-weight: 400;
+    display: block;
+}
+.profile-img
+{
+    width: 9.6rem;
+    height: 9.6rem;
+    margin: 0 auto 1.0rem;
+    display: block;
+    -moz-border-radius: 50%;
+    -webkit-border-radius: 50%;
+    border-radius: 50%;
+}
+
+.navbar-brand{
+    text-align: center;
+    //width: 9.6rem;
+    height: auto;
+    margin: 0 auto 0;
+    display: block;
+    color: $prim;
+}
+
+.info{
+  font-size: 1.2rem;
+  padding-top: 1.5rem;
+  cursor: pointer;
+}
+
+.need-help
+{
+    margin-top: 1.0rem;
+}
+.new-account
+{
+    display: block;
+    margin-top: 1.0rem;
+    font-size: 1.2rem;
+}
+
+p{
+  margin: 0;
+}
+
+.btn{
+  background-color: $prim;
+  margin-top: 2.0rem;
+  font-size: 1.4rem;
+  font-weight: medium;
+  color: $white;
+}
+
+.btn:disabled{
+  color: rgba(0, 0, 0, 0.38);
+  background-color: $grey;
+}
+
+.btn:active .btn:hover{
+  background-color: $sec;
+}
+
+.example-form {
+  min-width: 15.0rem;
+  max-width: 50.0rem;
+  width: 100%;
+}
+
+.example-full-width {
+  width: 100%;
+}

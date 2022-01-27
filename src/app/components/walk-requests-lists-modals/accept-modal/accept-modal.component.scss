@@ -1,0 +1,78 @@
+header{
+  text-align: center;
+  font-family: Roboto;
+
+  .title{
+    margin: 24px 0 8px;
+    font-size: 20px;
+    font-weight: 500;
+  }
+
+  .description{
+    margin: 8px 1px 32px 2px;
+    font-size: 16px;
+  }
+}
+
+.cancel-changes-active {
+  margin:0 0 0 43px !important;
+  font-weight: bolder;
+  background-color: #fff;
+  width: 120px;
+  height: 36px;
+  padding: 8px 20px 9px;
+  border-radius: 4px;
+  color: #6100ed;
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.2);
+  border: 1px solid #6100ed;
+  cursor: pointer;
+}
+
+.cancel-changes-active:hover{
+  transition: .3s;
+  background-color: rgba(97, 0, 237, 0.12);
+}
+
+
+.save-changes-active {
+  margin:0 0 0 43px !important;
+  font-weight: bolder;
+  background-color: #6100ed;
+  width: 140px;
+  height: 36px;
+  padding: 8px 20px 9px;
+  border-radius: 4px;
+  color: white;
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.2);
+  border-style: none;
+  cursor: pointer;
+}
+
+.save-changes-active:hover{
+  transition: .3s;
+  background-color: #873df2;
+}
+
+.save-changes-active:disabled{
+  color: rgba(0, 0, 0, 0.38);
+  background-color: #e4e4e4;;
+  cursor: auto;
+}
+
+.info-text{
+  font-size: 12px;
+}
+
+.walk-info{
+  font-weight: bolder;
+}
+
+p span{
+  color: #6100ed;
+}
+
+
+
+
+
+

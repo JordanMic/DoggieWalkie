@@ -1,0 +1,21 @@
+<header>
+  <p class="title">Czy jesteś pewien, że chcesz zaakceptować ten spacer ?</p>
+  <p class="description">Klikając "Akceptuj" zgadzasz się na godziny zaproponowane przez użytkownika. Użytkownik otrzyma powiadomienie o zaakceptowanym spacerze</p>
+</header>
+
+<div class="d-flex justify-content-center" style="margin-top: 34px">
+  <div class="d-flex flex-column justify-content-between align-items-center walk-info">
+      <p>Osoba wyprowadzająca: <span>{{data.userName}}</span></p>
+    <p>Termin: <span>{{data.startDate | date: 'dd.MM.yyyy'}}</span></p>
+    <p>Godzina: <span>{{data.timesStart | date: 'HH:mm'}} - {{data.timesEnd | date: 'HH:mm'}}</span></p>
+  </div>
+</div>
+
+  <div class="d-flex justify-content-center" style="margin-top: 34px">
+    <div class="d-flex justify-content-between">
+      <button class="cancel-changes-active" (click)="cancel()">Anuluj</button>
+      <button class="save-changes-active" (click)="accept()"><i class="fa fa-check"></i> Akceptuj</button>
+    </div>
+  </div>
+
+

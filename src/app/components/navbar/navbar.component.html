@@ -1,0 +1,77 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-white" xmlns="http://www.w3.org/1999/html" *ngIf="showNavbar">
+  <div class="container-fluid d-flex flex-row justify-content-between">
+    <a class=" col navbar-brand" >
+      <img src="assets/logo/logo.svg" style="width:170px;" alt="Logo" (click)="brandClick()">
+    </a>
+    <div *ngIf="!logged">
+      <a (click)="goToSignIn()" class="btn btnIn">
+        Zaloguj się
+      </a>
+      <a (click)="goToSignUp()" class="btn btnUp">
+        Zarejestruj się
+      </a>
+    </div>
+    <div *ngIf="logged">
+
+      <div class="d-flex flex-row">
+        <a [matMenuTriggerFor]="messages">
+          <mat-icon class="mt-4" style="cursor: pointer" [matBadge]="countUnreadMessages()" >chat_bubble_outline</mat-icon>
+        </a>
+        <mat-menu #messages="matMenu">
+          <app-message-list-element
+            *ngFor="let messageThread of messageThreads"
+            (openChat$)="openChat($event)"
+            [messageThread]="messageThread"
+            >
+          </app-message-list-element>
+          <hr>
+          <button mat-menu-item (click)="openMessages()">
+            Pokaż wszystkie wiadomośći
+          </button>
+        </mat-menu>
+        <a [matMenuTriggerFor]="notification">
+          <mat-icon class="mt-4 mx-4" style="cursor: pointer" [matBadge]="countUnreadNotifications()">notifications_none</mat-icon>
+        </a>
+        <mat-menu #notification="matMenu">
+          <h4 class="mt-2 mx-4" >Powiadomienia</h4>
+          <hr>
+          <div class="notification" *ngFor="let notification of notifications" (click)="callNotificationAction(notification)">
+            {{ getNotificationMessage(notification) }}
+            <span class="date">{{ notification.createAt | date: 'medium' }}</span>
+            <div class="unread" *ngIf="!notification.read"></div>
+          </div>
+        </mat-menu>
+
+
+        <app-avatar style="cursor: pointer;" *ngIf="userData"
+                    [initialsSource]="[userData.userData?.firstName || userData.username, userData.userData?.lastName || userData.username]"
+                    [imageFile]="userData?.userData?.avatar || null"
+                    [salt]="userData.username"
+                    [matMenuTriggerFor]="menu"
+                    #menuTrigger
+        ></app-avatar>
+
+      <mat-menu #menu="matMenu">
+        <span mat-menu-item  (click)="goToMyProfile()">Jesteś zalogowany(-a), jako: <strong>{{userData?.userData?.firstName}}</strong></span>
+        <hr>
+        <button mat-menu-item *ngIf="(userData?.userData?.request) === true" (click)="goToWalkList()">Moje spacery</button>
+        <button mat-menu-item *ngIf="(userData?.userData?.listOfDogs || 0) > 1" (click)="goToMyPack()">Zarządzaj moją watahą</button>
+        <button mat-menu-item *ngIf="(userData?.userData?.listOfDogs) === 1"  (click)="goToMyPack()">Zarządzaj moim psem</button>
+        <button mat-menu-item *ngIf="activeForum == false" (click)="goToForum()">Forum</button>
+        <button mat-menu-item *ngIf="activeForum == true" (click)="goToMain()">Lista psów</button>
+        <button mat-menu-item (click)="goToSettings()">Ustawienia</button>
+        <hr *ngIf="(userData?.userData?.listOfDogs || 0) < 1">
+        <p *ngIf="(userData?.userData?.listOfDogs || 0) < 1" class="space"></p>
+        <p *ngIf="(userData?.userData?.listOfDogs || 0) < 1"  style="text-align: center; margin: 5px auto">
+          <span class="addDog" (click)="goToCreateDogProfile()">Załóż profil psa
+          </span>
+        </p>
+        <p *ngIf="(userData?.userData?.listOfDogs || 0) < 1"  class="space"></p>
+        <hr>
+        <button mat-menu-item (click)="goToMainPage()">Wyloguj</button>
+      </mat-menu>
+
+    </div>
+    </div>
+  </div>
+</nav>

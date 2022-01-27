@@ -1,0 +1,59 @@
+
+  <div class="container-fluid vh-100 cont">
+
+    <app-danger-same-user *ngIf="danger === true"></app-danger-same-user>
+
+    <app-alert-basic *ngIf="warning === true"></app-alert-basic>
+
+    <app-danger-wrong-confirm *ngIf="confirm === true"></app-danger-wrong-confirm>
+
+      <div class="row d-flex justify-content-center h-100 align-items-center">
+          <div class="col-sm-6 col-md-4 col-md-offset-4 contents">
+              <a class="navbar-brand" href="/">
+                <img src="assets/logo/logo.svg" style="width:170px;" alt="Logo">
+              </a>
+              <div class="account-wall">
+                <h2 style="text-align: center; color: darkred">{{error}}</h2>
+                  <h3>Zarejestruj się do aplikacji</h3>
+                  <form class="form-signin" [formGroup]="form">
+
+                  <mat-form-field class="example-full-width">
+                    <mat-label>Login</mat-label>
+                    <input matInput type="text" name="login" formControlName="login" placeholder="Wprowadź login dla twojego konta" required>
+                    <mat-error *ngIf="loginFormControl.hasError('required')">
+                      Login is <strong>required</strong>
+                    </mat-error>
+                  </mat-form-field>
+
+                  <mat-form-field class="example-full-width">
+                    <mat-label >Email</mat-label>
+                    <input matInput type="email" name="email" formControlName="email" placeholder="Podaj email dla twojego konta" required ngModel pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}">
+                    <mat-error *ngIf="emailFormControl.hasError('email') && !emailFormControl.hasError('required')">
+                      Please enter a valid email address
+                    </mat-error>
+                    <mat-error *ngIf="emailFormControl.hasError('required')">
+                      Email is <strong>required</strong>
+                    </mat-error>
+                  </mat-form-field>
+
+                  <mat-form-field class="example-full-width">
+                    <mat-label>Hasło</mat-label>
+                    <input matInput type="password" name="password" formControlName="password" placeholder="Wprowadź hasło dla twojego konta" required ngModel pattern="^(?=.*[0-9])[a-zA-Z0-9!@#$%^&*_]{6,23}$">
+                  </mat-form-field>
+
+                  <mat-form-field class="example-full-width">
+                    <mat-label>Powtórz hasło</mat-label>
+                    <input matInput type="password" name="confirmPassword" formControlName="confirmPassword" placeholder="Powtórz hasło" required ngModel pattern="^(?=.*[0-9])[a-zA-Z0-9!@#$%^&*_]{6,23}$">
+                  </mat-form-field>
+
+                  <p class="text-center info">Rejestrując się, akceptuję<br>
+                    <a class="link" (click)="goToPrivacy()">Politykę prywatności</a> oraz <a class="linl" (click)="goToTerms()">Warunki korzystania z usługi</a></p>
+                  </form>
+              </div>
+              <button class="btn btn-block" type="submit" [disabled]='form.invalid' (click)="chceckPassword()">
+                Zarejestruj się</button>
+              <p class="text-center new-account">Masz już konto? <a class="info" (click)="goToSignIn()">Zaloguj się</a></p>
+          </div>
+      </div>
+  </div>
+

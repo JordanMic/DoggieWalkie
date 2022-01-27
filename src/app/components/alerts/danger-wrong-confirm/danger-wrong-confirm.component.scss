@@ -1,0 +1,12 @@
+ngb-alert{
+  position: absolute;
+  top: 2.0rem;
+  left: 50%;
+  transform: translateX(-50%);
+}
+@media screen and (max-width: 768px){
+  ngb-alert{
+    left: 12%;
+    transform: translateX(-7%);
+  }
+}

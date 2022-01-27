@@ -1,0 +1,19 @@
+<div class="verify-account">
+  <div class="content">
+    <h3>
+      <ng-container *ngIf="status == statuses.PENDING">
+        Weryfikacja w trakcie
+      </ng-container>
+      <ng-container *ngIf="status == statuses.SUCCESS">
+        Weryfikacja przebiegła pomyślnie. <br>
+        Teraz możesz się zalogować
+      </ng-container>
+      <ng-container *ngIf="status == statuses.FAILED">
+        Niestety weryfikacja nie powiodła się. <br>
+        Spróbuj ponownie później
+      </ng-container>
+    </h3>
+    <button *ngIf="status == statuses.SUCCESS" (click)="goToLoginPage()" mat-button color="primary">Zaloguj się</button>
+    <button *ngIf="status == statuses.FAILED" (click)="goToMainPage()" mat-stroked-button color="primary">Wróc do strony głównej</button>
+  </div>
+</div>

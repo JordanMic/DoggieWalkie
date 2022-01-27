@@ -1,0 +1,382 @@
+
+  .header{
+    display: flex;
+    width: 100%;
+    height: 11vh;
+    background-image: linear-gradient(to left, #6200ee, #7d24d6);
+  }
+
+.container{
+  margin: auto;
+  text-align: center;
+  width: 40%;
+   background-color: var(--white);
+   box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.2);
+
+}
+  @media screen and (max-width: 1440px) {
+    .container{
+      width: 60%;
+    }
+  }
+  @media screen and (max-width: 1080px) {
+    .container{
+      width: 90%;
+    }
+  }
+
+.tile-container{
+    margin: auto;
+    text-align: center;
+    width: 90%;
+}
+
+.tile-content{
+     background-color: var(--white);
+     box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.2);
+     padding: 0.5em;
+     width: 100%;
+  }
+
+.content {
+  transform:  translateY(-120px);
+}
+
+.space-large {
+  padding-top: 5em;
+}
+
+.profile-name {
+  font-size: 3em !important;
+  padding-bottom: 0.5em;
+  line-height: 1em;
+}
+
+  .dot {
+    height: 10px;
+    width: 10px;
+    border-radius: 50%;
+    display: inline-block;
+    vertical-align: middle;
+    margin-right: 0.6em;
+  }
+
+.subtext-1 {
+  opacity: 0.7;
+  padding-bottom: 0.5em;
+  font-size: 1.5em;
+  font-weight: 500;
+}
+
+.subtext-2 {
+  opacity: 0.7;
+  padding-bottom: 0.5em;
+  font-size: 1em;
+  font-weight: 500;
+}
+
+.subtext-3 {
+  opacity: 0.7;
+  padding-bottom: 0.5em;
+  font-size: 0.8em;
+  font-weight: 500;
+}
+
+.profile-image {
+  position:absolute;
+  width: 10em; height: 10em;
+  transform: translateX(-50%) translateY(-350%);
+  top: 50%; left: 50%;
+}
+
+#avatar {
+  width: 12em;
+  height: 12em;
+  background-size: cover;
+  background-position: top center;
+  border-radius: 50%;
+  margin-left: auto;
+  margin-right: auto;
+  transform: translateY(20%);
+  border: solid white 4px;
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.2);
+}
+
+.badge{
+  position: absolute;
+  top: 110px;
+  right: 1px;
+  width: 3.5em;
+  height: 3.5em;
+  background-size: cover;
+  background-position: top center;
+  border-radius: 50%;
+  border: solid white 2px;
+  transform: translateY(20%);
+}
+
+.badge-img{
+  height: 100%;
+  width: 100%;
+  transform: scale(1.5);
+}
+
+  .btn-primary{
+    margin: 10px;
+    padding: 8px 20px 9px;
+    border-style: none;
+    border-radius: 4px;
+    box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.2);
+    background-color: rgb(255, 255, 255);
+    font-size: 14px;
+    letter-spacing: 1.25px;
+    text-align: center;
+    color: rgb(97, 0, 237);
+  }
+
+  .btn-secondary{
+    margin: 10px;
+    padding: 8px 20px 9px;
+    border-style: none;
+    border-radius: 4px;
+    box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.2);
+    background-color: rgb(97, 0, 237);
+    font-size: 14px;
+    letter-spacing: 1.25px;
+    text-align: center;
+    color: white;
+  }
+
+
+  .owner{
+    width: 204px;
+    height: 53px;
+    margin: 14px 112px 0;
+    padding: 6px 10px 5px;
+    box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.2);
+    background-color: rgb(255, 255, 255)
+  }
+
+
+  .left-border {
+    border-left: 1px solid rgba(0, 0, 0, .2);
+
+  }
+
+  .right-border {
+    border-right: 3px solid rgba(0, 0, 0, .2);
+  }
+
+.profile-header{
+    opacity: 0.7;
+    font-size: 1.2em;
+    margin-bottom: 0.7em;
+    text-transform: uppercase;
+  }
+
+  .profile-value {
+    font-size: 1.5em;
+    display:block;
+    clear:both;
+    font-weight: 500;
+
+  }
+
+  .green-status {
+    background-color: rgb(52, 133, 52);
+    border-radius: 50%;
+    width: 1em;
+    height: 1em;
+    opacity: 0.6;
+  }
+
+  .red-status {
+    background-color: rgb(129, 21, 21);
+    border-radius: 50%;
+    width: 1em;
+    height: 1em;
+    opacity: 0.6;
+  }
+
+  .status-text {
+    margin-top: auto;
+    margin-bottom: auto;
+    margin-left: 0.5em;
+    font-size: 1em;
+    opacity: 0.75;
+  }
+
+  .profile-description-header{
+    margin-bottom: 8px;
+    font-size: 14px;
+    font-weight: bolder;
+  }
+
+
+  .profile-description {
+    margin-top: auto;
+    margin-bottom: auto;
+    margin-left: auto;
+    margin-right: auto;
+    width: 90%;
+    font-size: 1em;
+    opacity: 0.75;
+  }
+
+
+  .owner-details-title {
+    margin: auto;
+    margin-top: 4vh;
+    margin-bottom: 3vh;
+    text-align: center;
+    width: 40%;
+    font-size: 1.2em;
+    opacity: 0.75;
+    font-weight: 500;
+  }
+
+  .user-details-card .container {
+    background-color: rgb(255, 255, 255);
+    padding: 0.5em;
+
+  }
+
+  .rounded-circle {
+    width: 4em;
+    height: 4em;
+    background-size: cover;
+    background-position: top center;
+    object-fit: cover;
+    overflow: hidden;
+  }
+
+  .owner-name {
+    font-size: 1.2em;
+    opacity: 0.75;
+    margin-top: auto;
+    margin-bottom: auto;
+    display: inline-block;
+
+  }
+
+  .arrow {
+    border: solid black;
+    border-width: 0 3px 3px 0;
+    display: inline-block;
+    padding: 3px;
+    margin-right: 1.5em;
+  }
+
+  .right {
+    transform: rotate(-45deg);
+    -webkit-transform: rotate(-45deg);
+  }
+
+  .red
+  {
+    background-color: rgb(129, 21, 21);
+  }
+  .green{
+    background-color: rgb(59, 151, 59);
+    opacity: 0.7;
+  }
+
+  .top-header {
+    width: 60%;
+    margin: auto;
+    margin-bottom: 2em;
+    font-weight: 550;
+}
+
+.reviews-number{
+  color: rgb(97, 0, 237);
+  font-weight: 500;
+  font-size: 1.1em;
+}
+
+.score-text {
+  font-weight: 600;
+}
+
+app-score-stars{
+  margin-left: 10px;
+}
+
+hr {
+  border-top: 2px solid  black !important;
+  opacity: 0.2;
+  margin-top: 1em;
+  margin-bottom: 1em;
+  border-radius: 2px;
+}
+
+.user-infobar {
+  margin-left: 1em;
+  margin-right: 1em;
+}
+
+  .reviews-page-title {
+    font-size: 2em;
+  }
+  .fa-chevron-left,.fa-chevron-down {
+    color: rgb(97, 0, 237);
+    font-size: 1.2em;
+    margin-right: 0.3em;
+  }
+
+  .author-name {
+    text-align: left !important;
+    margin-top: auto !important;
+    margin-bottom: auto  !important;
+    padding-left: 2em;
+    font-weight: 500;
+    font-size: 1.2em;
+  }
+
+  .review-entry {
+    margin-top: 2em;
+  }
+
+  .text-left {
+    text-align: left !important;
+
+  }
+
+  .reviews-page-title {
+    font-size: 2em;
+  }
+
+  .fa-chevron-left,.fa-chevron-down {
+    color: rgb(97, 0, 237);
+    font-size: 1.2em;
+    margin-right: 0.3em;
+  }
+
+  .author-name {
+    text-align: left !important;
+    margin-top: auto !important;
+    margin-bottom: auto  !important;
+    padding-left: 2em;
+    font-weight: 500;
+    font-size: 1.2em;
+  }
+
+  .review-entry {
+    margin-top: 2em;
+  }
+
+  .text-left {
+    text-align: left !important;
+
+  }
+
+
+  .review-text {
+    margin: 10px auto;
+    font-weight: 500;
+    opacity: 0.6;
+  }
+
+  .container {
+    padding-bottom: 1em;
+  }

@@ -1,0 +1,173 @@
+<section class="header d-flex flex-column justify-content-center">
+  <i (click)="goToMainPage()" class="fa fa-chevron-left" style="font-size: 35px; color: white; margin-left: 43px; cursor: pointer; z-index: 1"></i>
+</section>
+
+<div class="content" *ngIf="dog">
+  <div id="avatar" #avatar>
+    <app-avatar *ngIf="dog.name"
+                [initialsSource]="[dog.name]"
+                [imageFile]="dog.avatar || null"
+                [salt]="dog.name"
+                [size]="160"
+
+    ></app-avatar>
+  </div>
+  <div class="container" style="padding-bottom: 30px">
+
+    <div class="space-large"></div>
+    <div class="row justify-content-center">
+        <span class="profile-name">{{dog.name}}</span>
+    </div>
+
+    <div class="row justify-content-center" style="margin-top: 20px">
+      <div class="col-md-3">
+        <span class="subtext-2" *ngIf="viewOpinion == true" style="cursor: pointer;" (click)="hideOpinion()"><i class="fa fa-chevron-left" aria-hidden="true"></i> Wróć do profilu</span>
+      </div>
+      <div class="col-md-6">
+        <span class="subtext-1">{{dog.breed}}</span>
+      </div>
+      <div class="col-md-3">
+      </div>
+    </div>
+    <hr>
+    <div class="row justify-content-between user-infobar">
+      <div class="col" style="text-align: left">
+        <div class="row" style="cursor: pointer" (click)="showOpinion()">
+          <div class="col-md-12 d-flex">
+            <span class="score-text">{{score}}</span>
+            <app-score-stars [score]="score"></app-score-stars>
+          </div>
+        </div>
+
+      </div>
+      <div class="col">
+        <span class="reviews-number" style="cursor: pointer;" (click)="showOpinion()">{{dog.numberOfRatings || 0}} opinii</span>
+      </div>
+      <div class="col">
+        <span class="subtext-2">Profil założony: {{dog.createdAt | date: 'dd.MM.yyyy'}} </span>
+      </div>
+    </div>
+    <hr>
+
+    <div class="row profile-details center mb-5" *ngIf="viewOpinion == false">
+      <div class="col-md-4 right-border">
+        <span class="profile-header">Data urodzenia</span>
+        <span class="profile-value">{{dog.dateOfBirth | date: 'dd.MM.yyyy'}}</span>
+      </div>
+      <div class="col-md-4 right-border">
+        <span class="profile-header">Płeć</span>
+        <span class="profile-value">{{dog.gender}}</span>
+      </div>
+      <div class="col-md-4">
+        <span class="profile-header">KASTRACJA</span>
+        <span class="profile-value">{{dog.castration ? 'Tak': 'Nie'}}</span>
+      </div>
+    </div>
+
+    <div class="row justify-content-center mb-5">
+      <p class="status-text" *ngIf="viewOpinion == false"><span class="dot" [ngClass]="dog.status ? 'green-status' : 'red-status'"></span>{{dog.status ? 'Czeka na spacer' : 'Niedostępny'}}</p>
+    </div>
+
+    <div class="row profile-description-header justify-content-center" *ngIf="viewOpinion == false">{{dog.header}}</div>
+
+    <div class="row profile-description justify-content-center" *ngIf="viewOpinion == false">{{dog.description}}</div>
+
+    <div *ngIf="viewOpinion == true">
+      <p class="empty-info4" *ngIf="opinions.length < 1" style="opacity: 0.4; text-align: center">Brak wystawionych opinii dla tego użytkownika</p>
+      <div class="container review-entry mb-5" *ngFor="let opinion of opinions" style="width: 100%;">
+        <div class="row">
+          <div class="col-md-1">
+            <app-avatar *ngIf="opinion.userProfileId" style="cursor: pointer;" (click)="goToProfile(opinion.userProfileId)" [initialsSource]="[opinion.firstName, opinion.lastName]"
+                        [imageFile]="opinion?.avatar || null"
+                        [salt]="opinion.firstName"
+                        [size]="50">
+            </app-avatar>
+          </div>
+          <div class="col-md-11 author-name" (click)="goToProfile(opinion.userProfileId)" style="cursor: pointer">
+            {{opinion.firstName}} {{opinion.lastName}}
+          </div>
+        </div>
+        <div class="row mt-3" >
+          <div class="col-md-3 text-left">
+            <app-score-stars [score]='opinion.rating'></app-score-stars>
+          </div>
+          <div class="col-md-4 review-date text-left subtext-2">
+            {{opinion.createdAt | date: 'dd.MM.yyyy'}}
+          </div>
+        </div>
+        <div class="row text-left mt-3">
+          <div class="col-md-12">
+            <span class="review-text">{{opinion.opinionContent}}</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-12 mt-5">
+      </div>
+    </div>
+
+
+  </div>
+
+    <div class="justify-content-center">
+      <mat-accordion multi>
+        <mat-expansion-panel class="acordiann"
+                             (opened)="panelOpenState = true"
+                             (closed)="panelOpenState = false">
+          <mat-expansion-panel-header>
+            <mat-panel-title style="font-weight: bolder; font-size: 14px;">
+              Zgłoszenia spacerów dla psa
+            </mat-panel-title>
+            <mat-panel-description style="justify-content: end; font-size: 14px;">
+              {{panelOpenState ? 'Ukryj' : 'Pokaż'}} listę
+            </mat-panel-description>
+          </mat-expansion-panel-header>
+          <div class="col-12" *ngIf="walks">
+            <div  *ngIf="walks.length < 1">
+              <p style="opacity: 0.4; text-align: center">Właściciel tego psa nie zgłasza żadnej potrzeby wyprowadzenia</p>
+            </div>
+              <p style="text-align: center; color: darkred" class="error">{{err}}</p>
+              <div class="walks d-flex justify-content-between align-items-center" *ngFor="let walk of walks; let index = index;">
+                <div class="row col-12 justify-content-between align-items-center">
+                  <div class="col-10">
+                    <span class="col-5" style="font-weight: bolder">{{walk.dateStart | date: 'dd.MM.yyyy'}}</span>
+                    <span class="col-5"> {{walk.dateStart | date: 'HH:mm'}} - {{walk.dateEnd | date: 'HH:mm'}}</span>
+                  </div>
+                  <div class="col-2">
+                    <button class="btn btn-secondary propose" (click)="openProposal(walk)">Umów</button>
+                  </div>
+                </div>
+              </div>
+          </div>
+        </mat-expansion-panel>
+      </mat-accordion>
+    </div>
+
+
+
+  <div class="mb-3"></div>
+
+  <div class="owner-details-title mb-2">Właściciel:</div>
+  <div class="owner-details-card" [routerLink]="['/user', dog.userBaseId]">
+    <div class="container" style="cursor: pointer;">
+      <div class="row" style="flex-wrap: nowrap !important">
+        <div class="col-md-3">
+          <div class="owner-avatar">
+            <app-avatar *ngIf="dog.firstName"
+                        [initialsSource]="[dog.firstName, dog.lastName]"
+                        [imageFile]="dog?.ownerAvatar || null"
+                        [salt]="dog.firstName"
+            ></app-avatar>
+          </div>
+        </div>
+        <div class="col-md-7 owner-name">
+          <span class="">{{dog.firstName}} {{dog.lastName}}</span>
+        </div>
+        <div class="col-md-2 owner-name">
+          <span class="arrow right"></span>
+        </div>
+      </div>
+    </div>
+  </div>

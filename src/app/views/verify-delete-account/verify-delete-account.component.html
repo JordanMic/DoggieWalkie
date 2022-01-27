@@ -1,0 +1,25 @@
+<div class="verify-delete-account">
+  <div class="content">
+    <h3>
+      <ng-container *ngIf="status == statuses.CONFIRM">
+        Czy na pewno chcesz usunąć konto? <br>
+        Nie będzie można ponownie użyć twojej nazwy użytkownika
+      </ng-container>
+      <ng-container *ngIf="status == statuses.PENDING">
+        Usuwanie w trakcie
+      </ng-container>
+      <ng-container *ngIf="status == statuses.SUCCESS">
+        Usunięcie konta przebiegło pomyślnie. <br>
+        Przykro że nas opuszczasz
+      </ng-container>
+      <ng-container *ngIf="status == statuses.FAILED">
+        Niestety usunięcie konta nie powiodło się. <br>
+        Spróbuj ponownie później
+      </ng-container>
+    </h3>
+    <div class="buttons">
+      <button *ngIf="status == statuses.CONFIRM" (click)="deleteAccount()" mat-button color="primary">Usuń konto</button>
+      <button (click)="goToMainPage()" mat-stroked-button color="primary">Wróc do strony głównej</button>
+    </div>
+  </div>
+</div>

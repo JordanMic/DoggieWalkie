@@ -1,0 +1,28 @@
+<div class="container-fluid vh-100 cont">
+  <div class="row d-flex justify-content-center h-100 align-items-center">
+      <div class="col-sm-6 col-md-4 col-md-offset-4 contents">
+          <a class="navbar-brand" href="/">
+            <img src="assets/logo/logo.svg" style="width:170px;" alt="Logo">
+          </a>
+          <div class="account-wall">
+              <h3>Przedstaw się</h3>
+              <form class="form-signin" [formGroup]="form">
+
+                <mat-form-field class="example-full-width">
+                  <mat-label>Imię</mat-label>
+                  <input matInput type="text" name="firstName" formControlName="firstName" placeholder="Podaj swoje imię" required>
+                </mat-form-field>
+
+                <mat-form-field class="example-full-width">
+                  <mat-label>Nazwisko</mat-label>
+                  <input matInput type="text" name="lastName" formControlName="lastName" placeholder="Podaj swoje nazwisko" required>
+                </mat-form-field>
+
+              </form>
+          </div>
+          <button class="btn btn-block" (click)="goToStepTwo()" [disabled]='form.invalid'>
+            Dalej
+          </button>
+      </div>
+  </div>
+</div>

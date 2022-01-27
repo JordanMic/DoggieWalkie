@@ -1,0 +1,152 @@
+<section class="header d-flex flex-column justify-content-center">
+  <i (click)="goToMainPage()" class="fa fa-chevron-left" style="font-size: 35px; color: white; margin-left: 43px; cursor: pointer; z-index: 1"></i>
+</section>
+
+<div class="content" *ngIf="user">
+  <div id="avatar" #avatar>
+    <app-avatar *ngIf="user.firstName"
+                [initialsSource]="[user.firstName, user.lastName]"
+                [imageFile]="user?.avatar || null"
+                [salt]="user.firstName"
+                [size]="160"
+    ></app-avatar>
+    <div class="badge">
+      <img class="badge-img" *ngIf="user.reputationPoints <= 300" src="assets/badges/score-badges-icons-lvl-1.svg"  alt="Logo" matTooltip="Ranga: Początkujący | Punkty reputacji: {{user.reputationPoints}}"  matTooltipPosition="right">
+      <img class="badge-img" *ngIf="user.reputationPoints >= 301 && user.reputationPoints <= 750" src="assets/badges/score-badges-icons-lvl-2.svg"  alt="Logo"  matTooltip="Ranga: Aspirujący | Punkty reputacji: {{user.reputationPoints}}"  matTooltipPosition="right">
+      <img class="badge-img" *ngIf="user.reputationPoints >= 751 && user.reputationPoints <= 1500" src="assets/badges/score-badges-icons-lvl-3.svg"  alt="Logo" matTooltip="Ranga: Wielbiciel psów | Punkty reputacji: {{user.reputationPoints}}" matTooltipPosition="right">
+      <img class="badge-img" *ngIf="user.reputationPoints >= 1501" src="assets/badges/score-badges-icons-lvl-4.svg"  alt="Logo" matTooltip="Ranga: Wielki miłośnik psów | Punkty reputacji: {{user.reputationPoints}}" matTooltipPosition="right">
+    </div>
+  </div>
+  <div class="container" style="padding-bottom: 30px">
+
+    <div class="space-large"></div>
+    <div class="row justify-content-center">
+        <span class="profile-name">{{user?.firstName}} {{user?.lastName}}</span>
+    </div>
+
+    <div class="row justify-content-center" style="margin-top: 20px">
+      <div class="col-md-3">
+        <span class="subtext-2" *ngIf="viewOpinion == true" style="cursor: pointer;" (click)="hideOpinion()"><i class="fa fa-chevron-left" aria-hidden="true"></i> Wróć do profilu</span>
+      </div>
+      <div class="col-md-6">
+        <span class="subtext-1">{{user?.town}}</span>
+      </div>
+      <div class="col-md-3">
+      </div>
+    </div>
+    <hr>
+    <div class="row justify-content-between user-infobar">
+      <div class="col" style="text-align: left;">
+        <div class="row" style="cursor: pointer" (click)="showOpinion()">
+          <div class="col-md-12 d-flex">
+            <span class="score-text">{{score}}</span>
+            <app-score-stars [score]="score"></app-score-stars>
+          </div>
+        </div>
+
+      </div>
+      <div class="col">
+        <span class="reviews-number" style="cursor: pointer;" (click)="showOpinion()">{{user.numberOfRatings || 0}} opinii</span>
+      </div>
+      <div class="col">
+        <span class="subtext-2">Profil założony: {{user.createdAt | date: 'dd.MM.yyyy'}} </span>
+      </div>
+    </div>
+    <hr>
+    <div class="mb-5"></div>
+
+    <div class="row profile-details center mb-5" *ngIf="viewOpinion == false">
+      <div class="col-md-4 right-border">
+        <span class="profile-header">Liczba psów</span>
+        <span class="profile-value">{{user.numberOfDogs}}</span>
+      </div>
+      <div class="col-md-4 right-border">
+        <span class="profile-header">Spacery</span>
+        <span class="profile-value">{{user.numberOfWalks}}</span>
+      </div>
+      <div class="col-md-4">
+        <span class="profile-header">Zlecone</span>
+        <span class="profile-value">{{user.numberOfOrderedWalks}}</span>
+      </div>
+    </div>
+
+    <div class="row profile-description-header justify-content-center" *ngIf="viewOpinion == false">{{user.header}}</div>
+
+    <div class="row profile-description justify-content-center" *ngIf="viewOpinion == false">{{user.shortBio}}</div>
+
+    <div class="row" *ngIf="viewOpinion == false">
+      <div class="col-md-12 mt-5">
+        <button type="button" class="btn btn-secondary" (click)="openChat()">Wyślij wiadomość</button>
+      </div>
+    </div>
+
+<div *ngIf="viewOpinion == true">
+    <p class="empty-info" *ngIf="opinions.length < 1" style="opacity: 0.4; text-align: center">Brak wystawionych opinii dla tego użytkownika</p>
+    <div class="container review-entry mb-5" *ngFor="let opinion of opinions" style="width: 100%; padding: 10px">
+      <div class="row">
+        <div class="col-md-1">
+          <app-avatar *ngIf="opinion.firstName"  (click)="goToProfile(opinion.userProfileId)" [initialsSource]="[opinion.firstName, opinion.lastName]"
+                      [imageFile]="opinion?.avatar || null"
+                      [salt]="opinion.firstName"
+                      [size]="50">
+          </app-avatar>
+        </div>
+        <div class="col-md-11 author-name" (click)="goToProfile(opinion.userProfileId)">
+          {{opinion.firstName}} {{opinion.lastName}}
+        </div>
+      </div>
+      <div class="row mt-3" >
+        <div class="col text-left">
+          <app-score-stars [score]='opinion.rating'></app-score-stars>
+        </div>
+        <div class="col review-date text-left subtext-2">
+          {{opinion.createdAt | date: 'dd.MM.yyyy'}}
+        </div>
+        <div class="col"></div>
+        <div class="col"></div>
+      </div>
+      <div class="row text-left mt-3">
+        <div class="col-md-12">
+          <span class="review-text">{{opinion.opinionContent}}</span>
+        </div>
+      </div>
+    </div>
+</div>
+
+
+  </div>
+  <div class="mb-3"></div>
+
+  <div class="owner-details-title mb-2" *ngIf="user.listOfDogs.length > 0">Moja wataha:</div>
+  <div class="mb-3"></div>
+
+  <div class="tile-container mt-5">
+    <div class="row justify-content-center" *ngIf="user">
+      <div class="user-details-card col-md-2" *ngFor="let dog of user.listOfDogs" [routerLink]="['/dog', dog.id]"
+        style="display: flex; flex-direction: column">
+        <div class="tile-content" style="margin-bottom: 10px; cursor: pointer">
+          <div class="row" style="flex-wrap: nowrap !important">
+            <div class="col-md-3">
+              <div class="owner-avatar">
+                <app-avatar *ngIf="dog.dogName"
+                            [initialsSource]="[dog.dogName]"
+                            [imageFile]="dog.avatar || null"
+                            [salt]="dog.dogName"
+                            [size]="50"
+
+                ></app-avatar>
+              </div>
+            </div>
+              <div class="col-md-7 owner-name">
+                <span class="">{{dog.dogName}}</span>
+              </div>
+              <div class="col-md-2 owner-name">
+                <span class="arrow right"></span>
+              </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

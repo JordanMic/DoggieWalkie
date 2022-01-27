@@ -1,0 +1,63 @@
+<section class="header">
+  <h2 class="header-text">Forum</h2>
+</section>
+
+<div class="container" style="margin: 50px auto"  *ngIf="homePageData">
+  <div class="row">
+    <div class="col-lg-12">
+      <div class="wrapper wrapper-content animated fadeInRight">
+
+        <div class="ibox-content m-b-sm border-bottom">
+          <div class="p-xs d-flex">
+            <div class="pull-left m-r-md">
+              <i class="fa fa-users text-navy mid-icon"></i>
+            </div>
+            <div style="margin-left: 30px">
+              <h2>Witamy na naszym forum</h2>
+              <span>Wybierz interesującą kategorię i prowadz dyskusję z innym użytkownikami</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="ibox-content forum-container" *ngIf="homePageData">
+
+          <div class="forum-title">
+            <h3>Kategorie:</h3>
+          </div>
+
+          <div class="forum-item active" (click)="goToCategory(categories.categoryId)" *ngFor="let categories of homePageData.categories">
+            <div class="row">
+              <div class="col-md-9">
+                <div class="forum-icon">
+                  <i class="fa fa-paw"></i>
+                </div>
+                <a class="forum-item-title">{{categories.category}}</a>
+                <div class="forum-sub-title">{{categories.shortDescription}}</div>
+              </div>
+              <div class="col-md-1 forum-info">
+                <span class="views-number">{{categories.numberOfPosts}}</span>
+                <div>
+                  <small>Posty</small>
+                </div>
+              </div>
+              <div class="col d-flex forum-info justify-content-center" *ngIf="categories.lastActiveFirstName">
+                <app-avatar [initialsSource]="[categories.lastActiveFirstName, categories.lastActiveLastName]" [imageFile]="categories.lastActiveUserAvatar || null" [salt]="categories.lastActiveFirstName" [size]="36"></app-avatar>
+                <div class="align-items-center">
+                  <p class="small"> Ostatnio {{categories.lastActiveFirstName}}<br> dnia: {{categories.lastActiveDate | date: 'dd.MM.yyyy'}}</p>
+                </div>
+              </div>
+              <div class="col d-flex forum-info justify-content-center" *ngIf="categories.lastActiveUserId == null">
+                <div class="align-items-center">
+                  <p class="small">Nikt nie dodał posta</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<app-footer></app-footer>

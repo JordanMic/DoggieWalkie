@@ -1,0 +1,7 @@
+<div *ngIf="!imageFile" class="avatar-body initials" [ngClass]="{'round': round}" [style]="{backgroundColor: color, height: size + 'px', width: size + 'px'}">
+  <span class="align-self-center self" [style]="{fontSize: (size / 4) + 'px'}">{{ initials }}</span>
+</div>
+
+<div *ngIf="imageFile" class="avatar-body" [ngClass]="{'round': round}" [style]="{height: size + 'px', width: size + 'px'}">
+  <img [style]="{height: size + 'px', width: size + 'px'}" [src]="image" alt="avatar">
+</div>

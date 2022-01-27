@@ -1,0 +1,78 @@
+<div class="content" *ngIf="userProfile">
+    <h3 class="top-header">Ustawienia profilu użytkownika</h3>
+        <div class="container">
+
+        <div class="d-flex flex-row user-img">
+            <div class="p-2 mr-4">
+              <app-avatar [initialsSource]="[userProfile.firstName, userProfile.lastName]"
+                          [salt]="userProfile.username"
+                          [imageFile]="userProfile?.avatar || null"
+                          [size]="96"
+              ></app-avatar>
+            </div>
+
+            <div class="col-md-8 mt-4">
+                <div class="row">
+                    <p class="photo-links" (click)="changePhoto()">Załaduj zdjęcie</p>
+                    <p class="dot">•</p>
+                    <p class="photo-links" (click)="deletePhoto()">Usuń zdjęcie</p>
+                </div>
+                <div class="row">
+                        <p class="subtext-3">Zdjęcia pomagają pozostałym użytkownikom w szybkim rozpoznaniu Cię w
+                            aplikacji</p>
+                </div>
+            </div>
+        </div>
+
+          <section class="inputs">
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                  <p class="text-type-field">Imię</p>
+                  <input matInput type="text" [(ngModel)]="userProfile.firstName" class="form-control input-gray2" placeholder="Twoje imię">
+                </div>
+                <div class="form-group col-md-6">
+                  <p class="text-type-field">Nazwisko</p>
+                  <input matInput type="text" [(ngModel)]="userProfile.lastName" class="form-control input-gray2" placeholder="Twoje nazwisko">
+                </div>
+            </div>
+            <div class="form-row">
+              <div class="form-group col-md-6">
+                <p class="text-type-field">Telefon</p>
+                <input matInput type="email" class="form-control input-gray2" [(ngModel)]="userProfile.phoneNumber" id="inputAddress" placeholder="Telefon">
+              </div>
+                <div class="form-group col-md-6">
+                  <p class="text-type-field">Miasto</p>
+                  <input matInput type="town" class="form-control input-gray2" [(ngModel)]="userProfile.town.name" id="inputAddress" placeholder="Miasto">
+                  <button class="changeTown" (click)="changeTown()">zmień lokalizację</button>
+                </div>
+
+            </div>
+
+            <div class="form-row">
+                <div class="form-group col-md-12">
+
+                <textarea class="form-control" rows="3" [(ngModel)]="userProfile.shortBio" placeholder="Opis..."></textarea>
+                <small id="emailHelp" class="form-text text-muted">Maksimum 400 znaków.</small>
+
+                </div>
+
+
+            </div>
+            <div class="d-flex justify-content-between button-group">
+                <div>
+                </div>
+
+              <p *ngIf="saveStatus" style="text-align: center; color: #51D646">{{saveStatus}}</p>
+              <p *ngIf="photoStatus" style="text-align: center; color: #51D646">{{photoStatus}}</p>
+
+                <div>
+
+                    <button class="save-changes-active" (click)="save()">Zapisz zmiany</button>
+                </div>
+            </div>
+
+          </section>
+
+    </div>
+</div>
+

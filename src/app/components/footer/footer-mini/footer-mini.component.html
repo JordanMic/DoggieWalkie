@@ -1,0 +1,21 @@
+<div class="footer-dark">
+  <footer>
+    <div class="container">
+      <div class="row footer-elements">
+        <div class="col">
+          <div class="list">
+            <p (click)="goToFaq()">FAQ</p>
+            <p (click)="openBugModal()">Zgłoś błąd</p>
+            <p [routerLink]="['/terms']">Regulamin</p>
+            <p [routerLink]="['/privacy']">Polityka prywatności</p>
+          </div>
+        </div>
+
+        <div class="col">
+          <p class="copyright">DoggieWalkie © 2022</p>
+        </div>
+      </div>
+
+    </div>
+  </footer>
+</div>

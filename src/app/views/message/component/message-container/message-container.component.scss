@@ -1,0 +1,14 @@
+.row {
+  margin: 0;
+  min-height: calc(100% - 56px);
+
+  .sidebar {
+    background-color: #f8f8f8;
+    padding: 0;
+  }
+
+  .content {
+    background-color: #f2f2f2;
+    padding: 0;
+  }
+}

@@ -1,0 +1,11 @@
+<div class="message-wrapper">
+  <div class="participant-avatar" *ngIf="author == messageAuthorType.OTHER && participantAvatar">
+    <ng-container *ngTemplateOutlet="participantAvatar"></ng-container>
+  </div>
+
+  <div *ngIf="message && messageThread" class="message" [ngClass]="{'own': author == messageAuthorType.OWN, 'other': author == messageAuthorType.OTHER, 'system': author == messageAuthorType.SYSTEM }">
+    <p>{{message.sentAt | date:'medium'}}</p>
+    <p>{{message.content}}</p>
+  </div>
+</div>
+

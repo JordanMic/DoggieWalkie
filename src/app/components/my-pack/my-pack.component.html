@@ -1,0 +1,15 @@
+<div class="d-flex justify-content-between">
+  <h2 class="my-pack-header">Moja wataha</h2>
+  <div class="my-auto col-xs-3 ml-auto report-button"><button type="button" class="btn btn-secondary openRequest" (click)="createDogProfile()">+ Załóż profil psa</button></div>
+</div>
+<div class="row mt-5 col-12 results">
+  <div *ngFor="let dog of dogs">
+    <app-dog-card [dog]="dog"></app-dog-card>
+  </div>
+</div>
+
+<div *ngIf="dogs.length < 1" class="empty-info">
+  <p class="show-if-empty">Nie posiadasz żadnego psa</p>
+</div>
+
+

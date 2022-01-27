@@ -1,0 +1,19 @@
+<div class="container-fluid vh-100 cont">
+  <div class="row d-flex justify-content-center h-100 align-items-center">
+    <div class="progress"></div>
+    <div class="col-sm-6 col-md-4 col-md-offset-4 contents">
+      <a class="navbar-brand" href="/">
+        <img src="assets/logo/logo.svg" style="width:170px;" alt="Logo">
+      </a>
+      <div class="account-wall">
+        <h3>{{ data.firstName }} to wszystko!</h3>
+
+        <div class="container">
+          <p>Twoje podstawowe konto jest już gotowe</p>
+        </div>
+
+      </div>
+      <button class="btn btn-block" (click)="goToMainPage()">Zatwierdź</button>
+    </div>
+  </div>
+</div>

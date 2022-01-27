@@ -1,0 +1,17 @@
+<h3>Rozpocznij nową rozmowę</h3>
+
+<div class="container">
+  <form class="message-form">
+    <mat-form-field
+      class="input"
+      appearance="fill"
+      type="text"
+    >
+      <mat-label>Message</mat-label>
+      <textarea  [formControl]="messageBox" matInput></textarea>
+    </mat-form-field>
+    <div>
+      <button (click)="sendMessage()" [disabled]="!messageBox.value" type="submit" mat-flat-button color="primary" class="btn-walk"  >Wyślij <mat-icon>send</mat-icon></button>
+    </div>
+  </form>
+</div>
