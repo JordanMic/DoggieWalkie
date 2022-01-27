@@ -1,6 +1,6 @@
 # DoggieWalkie
 
-Aplikacja typu SPA, służaca wspomaganiu wyprowadzania psów na spacer.
+Aplikacja webowa typu SPA, służaca wspomaganiu wyprowadzania psów na spacer. Pełna wersja aplikacji dostępna jest pod adresem doggiewalkie.pl
 
 ## Cel projektu
 
